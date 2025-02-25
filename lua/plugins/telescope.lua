@@ -65,7 +65,7 @@ return
           },
         },
         live_grep = {
-           file_ignore_patterns = { 'node_modules', '.git', '.venv'},
+         file_ignore_patterns = { 'node_modules', '.git', '.venv'},
            additional_args = function(_)
             return { '--hidden' }
           end,
@@ -83,14 +83,14 @@ return
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+      vim.keymap.set('n', '<leader>h', builtin.help_tags, { desc = 'Search [H]elp' })
+      vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Search [K]eymaps' })
+      vim.keymap.set('n', '<leader>en', builtin.find_files, { desc = 'S[e]archi[n]g Files' })
+      vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search Select [T]elescope' })
+      vim.keymap.set('n', '<leader>wo', builtin.grep_string, { desc = 'Search current [Wo]rd' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-      vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+      vim.keymap.set('n', '<leader>dg', builtin.diagnostics, { desc = 'Search [D]ia[g]nostics' })
+      vim.keymap.set('n', '<leader>re', builtin.resume, { desc = 'Search [Re]sume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
@@ -105,7 +105,7 @@ return
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
+      vim.keymap.set('n', '<leader>l', function()
         builtin.live_grep {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',

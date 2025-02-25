@@ -27,7 +27,7 @@ return {
       end,
       keys = {
         { '<leader>w', ':Neotree toggle float<CR>', silent = true, desc = 'Float File Explorer' },
-        { '<leader>e', ':Neotree toggle position=left<CR>', silent = true, desc = 'Left File Explorer' },
+         { '<leader>n', ':Neotree toggle position=left<CR>', silent = true, desc = 'Left File Explorer' },
         { '<leader>ngs', ':Neotree float git_status<CR>', silent = true, desc = 'Neotree Open Git Status Window' },
       },
     },
@@ -315,6 +315,5 @@ return {
     }
     vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
 
-    vim.keymap.set( 'n', '<leader>e', ':Neotree toggle position=left<CR>', { noremap = true, silent = true } )
   end
 }

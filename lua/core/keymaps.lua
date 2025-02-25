@@ -40,10 +40,10 @@ vim.keymap.set( 'n', '<S-Tab>', ':bprevious<CR>', opts)
 vim.keymap.set( 'n', '<leader>b', ':<cmd> enew <CR>', opts )
 
 -- Window management
-vim.keymap.set( 'n', '<leader>v', '<C-w>v', opts )
-vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts)
-vim.keymap.set( 'n', '<leader>se', ':Bdelete!<CR>', opts )
-vim.keymap.set( 'n', '<leader>xs', ':close<CR>', opts )
+vim.keymap.set( 'n', '<leader>v', '<C-w>v', opts ) -- vertical split
+-- vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts) -- horizontal split
+vim.keymap.set( 'n', '<leader>x', ':Bdelete!<CR>', opts )
+vim.keymap.set( 'n', '<leader>sx', ':close<CR>', opts )
 
 -- Navigation between splits
 vim.keymap.set( 'n', '<C-k>', ':wincmd k<CR>', opts )
@@ -66,6 +66,7 @@ vim.keymap.set( 'v', '>', '>gv', opts )
 
 -- keep last yanked when pasting
 vim.keymap.set( 'v', 'p', '"_dP', opts )
+
 
 -- Diagnostic keymaps
 vim.keymap.set( 'n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic'} )
