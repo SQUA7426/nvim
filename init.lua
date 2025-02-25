@@ -24,11 +24,13 @@ require('lazy').setup({
 },
     require 'plugins.colortheme',
     -- before : sudo apt-get install imagemagick
-    -- then: sudo apt install liblua5.1-0-dev
+    -- then: sudo apt install liblua5.1-0-dev / sudo pacman -S lua lualib
     -- then: luarocks install image.nvim
     require 'plugins.neotree',
     require 'plugins.bufferline',
     require 'plugins.lualine',
     require 'plugins.treesitter',
+    -- sudo install fd / sudo pacman -S fd
     require 'plugins.telescope',
+    -- require 'plugins.lspconfig',
 })
