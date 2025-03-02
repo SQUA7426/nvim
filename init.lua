@@ -20,8 +20,8 @@ require('lazy').setup({
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
     -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
-  }
-},
+    }
+  },
     require 'plugins.colortheme',
     -- before : sudo apt-get install imagemagick
     -- then: sudo apt install liblua5.1-0-dev / sudo pacman -S lua lualib
@@ -32,5 +32,8 @@ require('lazy').setup({
     require 'plugins.treesitter',
     -- sudo install fd / sudo pacman -S fd
     require 'plugins.telescope',
-    -- require 'plugins.lspconfig',
+    require 'plugins.dressing',
+    require 'plugins.nvim-cmp',
+    require 'plugins.lsp.mason',
+    require 'plugins.lsp.lspconfig'
 })

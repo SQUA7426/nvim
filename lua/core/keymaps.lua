@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = ' ' -- set the mapleader to Space
+vim.g.maplocalleader = ' ' -- the same as mapleader
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 local opts = { noremap = true,  silent = true }
@@ -69,7 +69,7 @@ vim.keymap.set( 'v', 'p', '"_dP', opts )
 
 
 -- Diagnostic keymaps
-vim.keymap.set( 'n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic'} )
-vim.keymap.set( 'n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic'} )
-vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
+-- vim.keymap.set( 'n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic'} )
+-- vim.keymap.set( 'n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic'} )
+-- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
 vim.keymap.set( 'n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list'} )
