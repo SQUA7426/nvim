@@ -1,0 +1,75 @@
+vim.g.mapleader = ' ' -- set the mapleader to Space
+vim.g.maplocalleader = ' ' -- the same as mapleader
+
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+local opts = { noremap = true,  silent = true }
+
+-- save file
+vim.keymap.set( 'n', '<C-s>', '<cmd> w <CR>', opts )
+-- quit file
+vim.keymap.set( 'n', '<C-q>', '<cmd> q <CR>', opts )
+-- write w/o autoformatting
+vim.keymap.set( 'n', '<leader>sn', '<cmd>noautocmd w <CR>', opts )
+
+-- delete a single char w/o copying into register
+vim.keymap.set( 'n', 'x', '"_x', opts )
+
+-- find the center
+vim.keymap.set( 'n', 'n', 'nzzzv', opts )
+vim.keymap.set( 'n', 'N', 'Nzzzv', opts )
+
+-- Resize with arrows
+-- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
+-- vim.keymap.set( 'n', '<Down>', ':resize +2<CR>', opts)
+-- vim.keymap.set( 'n', '<Left>', ':vertical resize -2<CR>', opts )
+-- vim.keymap.set( 'n', '<Right>', ':vertical resize +2<CR>', opts)
+
+-- Disable arrows
+vim.keymap.set( 'n', '<Up>', ':echo "use k!"<CR>', opts )
+vim.keymap.set( 'n', '<Down>', ':echo "use j!"<CR>', opts )
+vim.keymap.set( 'n', '<Left>', ':echo "use h!"<CR>', opts )
+vim.keymap.set( 'n', '<Right>', ':echo "use l!"<CR>', opts )
+
+
+
+
+-- Buffers
+vim.keymap.set( 'n', '<Tab>', ':bnext<CR>', opts )
+vim.keymap.set( 'n', '<S-Tab>', ':bprevious<CR>', opts)
+-- vim.keymap.set( 'n', '<leader>x', ':Bdelete!<CR>', opts )
+vim.keymap.set( 'n', '<leader>b', ':<cmd> enew <CR>', opts )
+
+-- Window management
+vim.keymap.set( 'n', '<leader>v', '<C-w>v', opts ) -- vertical split
+-- vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts) -- horizontal split
+vim.keymap.set( 'n', '<leader>x', ':Bdelete!<CR>', opts )
+vim.keymap.set( 'n', '<leader>sx', ':close<CR>', opts )
+
+-- Navigation between splits
+vim.keymap.set( 'n', '<C-k>', ':wincmd k<CR>', opts )
+vim.keymap.set( 'n', '<C-j>', ':wincmd j<CR>', opts )
+vim.keymap.set( 'n', '<C-h>', ':wincmd h<CR>', opts )
+vim.keymap.set( 'n', '<C-l>', ':wincmd l<CR>', opts )
+
+-- Taps
+vim.keymap.set( 'n', '<leader>to', ':tabnew<CR>', opts )
+vim.keymap.set( 'n', '<leader>tx', ':tabclose<CR>', opts )
+vim.keymap.set( 'n', '<leader>tn', ':tabn<CR>', opts )
+vim.keymap.set( 'n', '<leader>tp', ':tabp<CR>', opts )
+
+-- Toggle line wrapping
+vim.keymap.set( 'n', '<leader>lw', '<cmd> set wrap!<CR>', opts)
+
+-- Stay in indent mode
+vim.keymap.set( 'v', '<', '<gv', opts )
+vim.keymap.set( 'v', '>', '>gv', opts )
+
+-- keep last yanked when pasting
+vim.keymap.set( 'v', 'p', '"_dP', opts )
+
+
+-- Diagnostic keymaps
+-- vim.keymap.set( 'n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic'} )
+-- vim.keymap.set( 'n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic'} )
+-- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
+vim.keymap.set( 'n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list'} )
