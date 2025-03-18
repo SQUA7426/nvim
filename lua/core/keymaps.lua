@@ -9,14 +9,16 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 -- write w/o autoformatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
+-- vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 
 -- delete a single char w/o copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
 
 -- find the center
-vim.keymap.set('n', 'n', 'nzzzv', opts)
-vim.keymap.set('n', 'N', 'Nzzzv', opts)
+vim.keymap.set('n', 'n', '50%<CR>', opts)
+-- vim.keymap.set('n', 'N', 'Nzzzv', opts)
+
+-- goto line : (number)gg
 
 -- Resize with arrows
 -- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
@@ -31,7 +33,11 @@ vim.keymap.set('n', '<Left>', ':echo "use h!"<CR>', opts)
 vim.keymap.set('n', '<Right>', ':echo "use l!"<CR>', opts)
 
 
-
+-- Dis-/ able copilot
+opts.desc = 'Copilot: disable'
+vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', opts)
+opts.desc = 'Copilot: enable'
+vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
@@ -41,7 +47,7 @@ vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', opts)
 
 -- Window management
 vim.keymap.set('n', '<leader>v', '<C-w>v', opts)   -- vertical split
--- vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts) -- horizontal split
+vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts) -- horizontal split
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts)
 vim.keymap.set('n', '<leader>sx', ':close<CR>', opts)
 
@@ -73,3 +79,27 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 -- vim.keymap.set( 'n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic'} )
 -- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list' })
+
+
+-- Terminal
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
+vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
+vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
+vim.keymap.set('n', 't', ':wincmd l<CR> a', opts)
+--vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
+vim.api.nvim_create_autocmd('TermOpen', {
+        group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+        callback = function ()
+            vim.opt.number = false
+            vim.opt.relativenumber = false
+        end,
+})
+
+vim.keymap.set( 'n', '<space>t', function ()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd('L')
+    vim.api.nvim_win_set_width(0, 80)
+end, opts)
+
+
