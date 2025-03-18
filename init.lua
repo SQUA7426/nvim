@@ -38,5 +38,5 @@ require('lazy').setup({
   require 'plugins.lsp.lspconfig',
   require 'plugins.lsp.autoformat',
   require 'plugins.lsp.copilot',
-
+  vim.cmd("source ~/.config/nvim/lua/plugins/exec.vim"),
 })

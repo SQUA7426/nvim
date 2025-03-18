@@ -20,6 +20,13 @@ vim.keymap.set('n', 'n', '50%<CR>', opts)
 
 -- goto line : (number)gg
 
+-- disable CR in 'n' and 'v'
+vim.api.nvim_set_keymap('n', '<CR>', '<Nop>', opts)
+vim.api.nvim_set_keymap('v', '<CR>', '<Nop>', opts)
+
+vim.api.nvim_set_keymap('n', 'E', '$', opts)
+vim.api.nvim_set_keymap('v', 'E', '$', opts)
+
 -- Resize with arrows
 -- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
 -- vim.keymap.set( 'n', '<Down>', ':resize +2<CR>', opts)
