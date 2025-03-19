@@ -83,7 +83,7 @@ return
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>he', builtin.help_tags, { desc = 'Search [He]lp' })
+      vim.keymap.set('n', '<leader>help', builtin.help_tags, { desc = 'Search [He]lp' })
       vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Search [K]eymaps' })
       vim.keymap.set('n', '<leader>en', builtin.find_files, { desc = 'S[e]archi[n]g Files' })
       vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search Select [T]elescope' })
