@@ -2,8 +2,11 @@ vim.g.mapleader = ' '      -- set the mapleader to Space
 vim.g.maplocalleader = ' ' -- the same as mapleader
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-local opts = { noremap = true, silent = true }
 
+local opts = { noremap = true, silent = true }
+vim.keymap.set('n', 's', '<Nop>', opts)
+vim.keymap.set('n', '<C-N>', '<Nop>', opts)
+vim.keymap.set('n', '<leader>c', '<Nop>', opts)
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
@@ -21,9 +24,11 @@ vim.keymap.set('n', 'n', '50%<CR>', opts)
 -- goto line : (number)gg
 
 -- disable CR in 'n' and 'v'
+opts.desc = 'disable CR'
 vim.api.nvim_set_keymap('n', '<CR>', '<Nop>', opts)
 vim.api.nvim_set_keymap('v', '<CR>', '<Nop>', opts)
 
+opts.desc = 'Jump to last char/letter'
 vim.api.nvim_set_keymap('n', 'E', '$', opts)
 vim.api.nvim_set_keymap('v', 'E', '$', opts)
 
@@ -49,6 +54,7 @@ opts.desc = 'Copilot: enable'
 vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', opts)
 
 -- Buffers
+opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 -- vim.keymap.set( 'n', '<leader>x', ':Bdelete!<CR>', opts )

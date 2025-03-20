@@ -83,15 +83,15 @@ return
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>help', builtin.help_tags, { desc = 'Search [He]lp' })
+      vim.keymap.set('n', '<leader>he', builtin.help_tags, { desc = 'Search [He]lp' })
       vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Search [K]eymaps' })
       vim.keymap.set('n', '<leader>en', builtin.find_files, { desc = 'S[e]archi[n]g Files' })
       vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search Select [T]elescope' })
       vim.keymap.set('n', '<leader>wo', builtin.grep_string, { desc = 'Search current [Wo]rd' })
-      vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>dg', builtin.diagnostics, { desc = 'Search [D]ia[g]nostics' })
       vim.keymap.set('n', '<leader>re', builtin.resume, { desc = 'Search [Re]sume' })
-      vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      -- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -105,7 +105,7 @@ return
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>l', function()
+      vim.keymap.set('n', '<leader>go', function()
         builtin.live_grep {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
