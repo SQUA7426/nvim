@@ -43,7 +43,6 @@ vim.api.nvim_set_keymap('n', 'E', '$', opts)
 vim.api.nvim_set_keymap('v', 'E', '$', opts)
 
 vim.cmd("source ~/.config/nvim/lua/plugins/exec.vim")
-
 -- Resize with arrows
 -- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
 -- vim.keymap.set( 'n', '<Down>', ':resize +2<CR>', opts)
@@ -141,7 +140,7 @@ local function compile_and_run_java()
 end
 
 -- Erstelle eine Autocommand-Gruppe
-vim.api.nvim_create_augroup('exe_code', { clear = true })
+vim.api.nvim_create_augroup('exe_code', { clear = false })
 
 -- Füge den Autocommand hinzu
 vim.api.nvim_create_autocmd('FileType', {
