@@ -6,7 +6,17 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', 's', '<Nop>', opts)
 vim.keymap.set('n', '<C-N>', '<Nop>', opts)
-vim.keymap.set('n', '<leader>c', '<Nop>', opts)
+vim.keymap.set('n', '<C-P>', '<Nop>', opts)
+
+
+--vim.api.nvim_set_keymap('n', '<C-P>', [[":lua vim.ui.input({ prompt = 'Enter package name (e.g., com.example): ' }, function(package_name) " ..
+--    "if package_name then " ..
+--    "vim.cmd('term cd %:p:h && javac *.java && java ' package_name '/%< <CR>)" ..
+--    "end)"]], { noremap = true, silent = true })
+
+
+
+vim.keymap.set('n', 'c', '<Nop>', opts)
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
@@ -61,8 +71,8 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', opts)
 
 -- Window management
-vim.keymap.set('n', '<leader>v', '<C-w>v', opts)   -- vertical split
-vim.keymap.set( 'n', '<leader>h', '<C-w>s', opts) -- horizontal split
+vim.keymap.set('n', '<leader>v', '<C-w>v', opts) -- vertical split
+vim.keymap.set('n', '<leader>h', '<C-w>s', opts) -- horizontal split
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts)
 vim.keymap.set('n', '<leader>sx', ':close<CR>', opts)
 
@@ -103,18 +113,16 @@ vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', 't', ':wincmd l<CR> a', opts)
 --vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
 vim.api.nvim_create_autocmd('TermOpen', {
-        group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-        callback = function ()
-            vim.opt.number = false
-            vim.opt.relativenumber = false
-        end,
+    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end,
 })
 
-vim.keymap.set( 'n', '<space>t', function ()
+vim.keymap.set('n', '<space>t', function()
     vim.cmd.vnew()
     vim.cmd.term()
     vim.cmd.wincmd('L')
     vim.api.nvim_win_set_width(0, 80)
 end, opts)
-
-

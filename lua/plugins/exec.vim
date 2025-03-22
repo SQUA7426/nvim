@@ -3,43 +3,43 @@ augroup exe_code
     
     " compile and run code in terminal
     autocmd FileType python nnoremap <C-M>
-                \ <C-w>v :term cd ./ && python3 %<CR> :startinsert<CR> a
+                \ <C-w>v :term cd %:p:h && python3 %<CR> :startinsert<CR>
 
     autocmd FileType c nnoremap <C-M>
-                \ <C-w>v :term cd ./ && gcc % -o %< && /.//%< <CR> a
+                \ <C-w>v :term cd %:p:h && gcc % -o %< && /.//%< <CR> a
 
     autocmd FileType cpp nnoremap <C-M>
-                \ <C-w>v :term cd ./ && g++ % -o %< && /.//%< <CR> a
+                \ <C-w>v :term cd %:p:h && g++ % -o %< && /.//%< <CR> a
 
     autocmd FileType javascript nnoremap <C-M>
-                \ <C-w>v :term cd ./ &&  nodejs %<CR> :startinsert<CR> a
+                \ <C-w>v :term cd %:p:h && nodejs %<CR> :startinsert<CR> a
 
     autocmd FileType java nnoremap <C-M>
-                \ <C-w>v :term cd ./ && javac % && java %< <CR> a
+                \ <C-w>v :term cd %:p:h && javac % && java %< <CR> a
     
     autocmd FileType rust nnoremap <C-M>
-                \ <C-w>v :term cd ./ && rustc % && /.//%< <CR> a
+                \ <C-w>v :term cd %:p:h && rustc % && /.//%< <CR>
 
     " compile and using arguments before executing in terminal
     autocmd FileType python nnoremap <C-N>
-                \ <C-w>v :term cd ./ && python3 %<CR> :startinsert
+                \ <C-w>v :term cd %:p:h && python3 %<CR> :startinsert
 
     autocmd FileType c nnoremap <C-N>
-                \ <C-w>v :term cd ./ && gcc % -o %< && /.//%<
+                \ <C-w>v :term cd %:p:h && gcc % -o %< && /.//%<
 
     autocmd FileType cpp nnoremap <C-N>
-                \ <C-w>v :term cd ./ && g++ % -o %< && /.//%<
+                \ <C-w>v :term cd %:p:h && g++ % -o %< && /.//%<
 
     autocmd FileType javascript nnoremap <C-N>
-                \ <C-w>v :term cd ./ &&  nodejs %<CR> :startinsert
+                \ <C-w>v :term cd %:p:h && nodejs %<CR> :startinsert
 
     autocmd FileType java nnoremap <C-N>
-                \ <C-w>v :term cd ./ && javac % && java %<
+                \ <C-w>v :term cd %:p:h && javac % && java %<
     
     autocmd FileType rust nnoremap <C-N>
-                \ <C-w>v :term cd ./ && rustc % && /.//%<
-
-
-
+                \ <C-w>v :term cd %:p:h && rustc % && /.//%<
+    
+    autocmd FileType java nnoremap <C-P>
+                \ :lua vim.ui.input(("Enter package name: "), function(package_name) if package_name then vim.cmd('term cd %:p:h && javac *.java && cd .. && java ' package '//%<'end)<CR>
 
 augroup END
