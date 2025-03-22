@@ -39,7 +39,4 @@ augroup exe_code
     autocmd FileType rust nnoremap <C-N>
                 \ <C-w>v :term cd %:p:h && rustc % && /.//%<
     
-    autocmd FileType java nnoremap <C-P>
-                \ :lua vim.ui.input(("Enter package name: "), function(package_name) if package_name then vim.cmd('term cd %:p:h && javac *.java && cd .. && java ' package '//%<'end)<CR>
-
 augroup END

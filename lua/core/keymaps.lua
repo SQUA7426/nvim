@@ -126,3 +126,30 @@ vim.keymap.set('n', '<space>t', function()
     vim.cmd.wincmd('L')
     vim.api.nvim_win_set_width(0, 80)
 end, opts)
+
+-- Definiere eine Funktion, die das Verhalten bei der Eingabe des Paketnamens übernimmt
+local function compile_and_run_java()
+  vim.ui.input('Enter package name: ', function(package_name)
+    if package_name then
+       local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+       local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+
+       -- Befehl zum Kompilieren und Ausführen der Java-Datei
+       vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+    end
+  end)
+end
+
+-- Erstelle eine Autocommand-Gruppe
+vim.api.nvim_create_augroup('exe_code', { clear = true })
+
+-- Füge den Autocommand hinzu
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'exe_code',
+  pattern = 'java',
+  callback = function()
+    -- Definiere die Tastenkombination für den Java-FileType
+    vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
+  end,
+})
+
