@@ -8,19 +8,14 @@ vim.keymap.set('n', 's', '<Nop>', opts)
 vim.keymap.set('n', '<C-N>', '<Nop>', opts)
 vim.keymap.set('n', '<C-P>', '<Nop>', opts)
 
-
---vim.api.nvim_set_keymap('n', '<C-P>', [[":lua vim.ui.input({ prompt = 'Enter package name (e.g., com.example): ' }, function(package_name) " ..
---    "if package_name then " ..
---    "vim.cmd('term cd %:p:h && javac *.java && java ' package_name '/%< <CR>)" ..
---    "end)"]], { noremap = true, silent = true })
-
-
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
 vim.keymap.set('n', 'c', '<Nop>', opts)
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+
 -- write w/o autoformatting
 -- vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 
