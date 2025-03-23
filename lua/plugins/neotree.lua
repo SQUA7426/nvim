@@ -258,7 +258,7 @@ return {
             ['os'] = { 'order_by_size', nowait = false },
             ['ot'] = { 'order_by_type', nowait = false },
           },
-          fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+          fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_modeneo
             ['<down>'] = 'move_cursor_down',
             ['<C-n>'] = 'move_cursor_down',
             ['<up>'] = 'move_cursor_up',

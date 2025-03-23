@@ -18,38 +18,38 @@ return
         local on_attach = function(client, bufnr)
             opts.buffer = bufnr
 
-            opts.desc = "Show LSP references"
-            keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+            opts.desc = "[S]how L[S]P references"
+            keymap.set("n", "gss", "<cmd>Telescope lsp_references<CR>", opts)
 
-            opts.desc = "Go to declaration"
-            keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+            opts.desc = "Go to d[ec]laration"
+            keymap.set("n", "ec", vim.lsp.buf.declaration, opts)
 
-            opts.desc = "Show LSP definitions"
-            keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+            opts.desc = "Show LSP d[e]finitions"
+            keymap.set("n", "ee", "<cmd>Telescope lsp_definitions<CR>", opts)
 
-            opts.desc = "Show LSP implementations"
-            keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+            -- opts.desc = "Show LSP implementations"
+            -- keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
-            opts.desc = "Show LSP type definitions"
-            keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+            -- opts.desc = "Show LSP type definitions"
+            -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
-            opts.desc = "See available code actions"
+            opts.desc = "See available [c]ode [a]ctions"
             keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-            opts.desc = "Smart rename"
-            keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+            opts.desc = "[Sm]art rename"
+            keymap.set("n", "<leader>sm", vim.lsp.buf.rename, opts)
 
-            opts.desc = "Show buffer diagnostics"
-            keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+            -- opts.desc = "Show buffer diagnostics"
+            -- keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
             -- opts.desc = "Show line diagnostics"
             -- keymap.set("n", "<leader>d", vim.diagnostic.open.float, opts)
 
-            opts.desc = "Goto previous diagnostic"
-            keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+            -- opts.desc = "Goto previous diagnostic"
+            -- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
-            opts.desc = "Goto next diagnostic"
-            keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+            -- opts.desc = "Goto next diagnostic"
+            -- keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
             opts.desc = "Show documentation for what is under cursor"
             keymap.set("n", "K", vim.lsp.buf.hover, opts)
