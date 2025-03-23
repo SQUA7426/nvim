@@ -17,7 +17,7 @@ require('lazy').setup({
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",       -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
     }
@@ -31,6 +31,7 @@ require('lazy').setup({
   require 'plugins.lualine',
   require 'plugins.treesitter',
   -- sudo install fd / sudo pacman -S fd
+  require 'plugins.whichkey',
   require 'plugins.telescope',
   require 'plugins.dressing',
   require 'plugins.nvim-cmp',
@@ -38,5 +39,5 @@ require('lazy').setup({
   require 'plugins.lsp.lspconfig',
   require 'plugins.lsp.autoformat',
   require 'plugins.lsp.copilot',
-  vim.cmd("source ~/.config/nvim/lua/plugins/exec.vim"),
+  require 'plugins.showkeys',
 })
