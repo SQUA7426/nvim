@@ -4,11 +4,10 @@ vim.g.maplocalleader = ' ' -- the same as mapleader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set({'n', 'v' }, 's', '<Nop>', opts)
-vim.keymap.set({'n', 'v' }, 'o', '<Nop>', opts)
+vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', opts)
 
-vim.keymap.set({'n', 'v'}, '<C-N>', '<Nop>', opts)
-vim.keymap.set({'n', 'v'}, '<C-P>', '<Nop>', opts)
+vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
+vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
@@ -72,8 +71,8 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'previous buffer' })
 vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 
 -- Window management
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split"}) -- vertical split
-vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split"}) -- horizontal split
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })  -- vertical split
+vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close buffer' })
 
@@ -101,8 +100,8 @@ vim.keymap.set('v', 'p', '"_dP', opts)
 
 
 -- Diagnostic keymaps
-vim.keymap.set( 'n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic'} )
-vim.keymap.set( 'n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic'} )
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic' })
 -- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list' })
 
@@ -114,29 +113,29 @@ vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', 't', ':wincmd l<CR> a', opts)
 --vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
 vim.api.nvim_create_autocmd('TermOpen', {
-    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-    callback = function()
-        vim.opt.number = false
-        vim.opt.relativenumber = false
-    end,
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
 })
 
 vim.keymap.set('n', '<space>t', function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd('L')
-    vim.api.nvim_win_set_width(0, 80)
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd('L')
+  vim.api.nvim_win_set_width(0, 80)
 end, { desc = 'Open terminal' })
 
 -- Definiere eine Funktion, die das Verhalten bei der Eingabe des Paketnamens übernimmt
 local function compile_and_run_java()
   vim.ui.input('Enter package name: ', function(package_name)
     if package_name then
-       local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
-       local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+      local file_name_without_extension = vim.fn.expand('%:t:r')             -- Dateiname ohne Erweiterung
+      local class_name = package_name .. '/' .. file_name_without_extension  -- Kombiniere Paketnamen und Dateinamen
 
-       -- Befehl zum Kompilieren und Ausführen der Java-Datei
-       vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+      -- Befehl zum Kompilieren und Ausführen der Java-Datei
+      vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
     end
   end)
 end
@@ -153,4 +152,3 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
   end,
 })
-
