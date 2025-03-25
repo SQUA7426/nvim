@@ -71,7 +71,7 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'previous buffer' })
 vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 
 -- Window management
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })  -- vertical split
+vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })   -- vertical split
 vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close buffer' })
@@ -113,19 +113,20 @@ vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', 't', ':wincmd l<CR> a', opts)
 --vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-  callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  end,
+    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end,
 })
 
 vim.keymap.set('n', '<space>t', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd('L')
-  vim.api.nvim_win_set_width(0, 80)
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd('L')
+    vim.api.nvim_win_set_width(0, 80)
 end, { desc = 'Open terminal' })
+
 
 -- Definiere eine Funktion, die das Verhalten bei der Eingabe des Paketnamens übernimmt
 local function compile_and_run_java()
@@ -145,10 +146,10 @@ vim.api.nvim_create_augroup('exe_code', { clear = false })
 
 -- Füge den Autocommand hinzu
 vim.api.nvim_create_autocmd('FileType', {
-  group = 'exe_code',
-  pattern = 'java',
-  callback = function()
-    -- Definiere die Tastenkombination für den Java-FileType
-    vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
-  end,
+    group = 'exe_code',
+    pattern = 'java',
+    callback = function()
+        -- Definiere die Tastenkombination für den Java-FileType
+        vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
+    end,
 })

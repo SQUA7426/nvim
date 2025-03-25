@@ -21,6 +21,12 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+
+-- set colorcolumn at 80 characters
+vim.opt.colorcolumn = '80'
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#2E3440' })
+vim.opt.virtualedit = 'block'
+
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 
