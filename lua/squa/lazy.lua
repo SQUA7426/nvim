@@ -8,12 +8,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- require "squa.core",
 -- before : sudo apt-get install imagemagick
 -- then: sudo apt install liblua5.1-0-dev / sudo pacman -S lua lualib
 -- then: luarocks install image.nvim
 -- sudo install fd / sudo pacman -S fd
--- require "squa.plugins",
 
 require('lazy').setup({
     {
@@ -36,6 +34,7 @@ require('lazy').setup({
         require 'squa.plugins.autopairs',
         require 'squa.plugins.bufferline',
         require 'squa.plugins.colortheme',
+        require 'squa.plugins.comrade',
         require 'squa.plugins.dressing',
         require 'squa.plugins.lualine',
         require 'squa.plugins.neotree',

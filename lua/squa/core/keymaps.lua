@@ -4,7 +4,7 @@ vim.g.maplocalleader = ' ' -- the same as mapleader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', opts)
+-- vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', opts)
 
 vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
 vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
