@@ -15,4 +15,34 @@ vim.opt.rtp:prepend(lazypath)
 -- sudo install fd / sudo pacman -S fd
 -- require "squa.plugins",
 
-require('lazy').setup( "squa.plugins" )
+require('lazy').setup({
+    {
+    "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+    },
+    {
+        -- lsp
+        require 'squa.plugins.lsp.lspconfig',
+        require 'squa.plugins.lsp.mason',
+        require 'squa.plugins.lsp.autoformat',
+        -- require 'squa.plugins.lsp.copilot',
+        -- not lsp
+        require 'squa.plugins.autopairs',
+        require 'squa.plugins.bufferline',
+        require 'squa.plugins.colortheme',
+        require 'squa.plugins.dressing',
+        require 'squa.plugins.lualine',
+        require 'squa.plugins.neotree',
+        require 'squa.plugins.nvim-cmp',
+        require 'squa.plugins.showkeys',
+        require 'squa.plugins.telescope',
+        require 'squa.plugins.treesitter',
+        require 'squa.plugins.whichkey',
+    }
+})
