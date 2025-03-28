@@ -36,6 +36,7 @@ require('lazy').setup({
         require 'squa.plugins.colortheme',
         require 'squa.plugins.comrade',
         require 'squa.plugins.dressing',
+        require 'squa.plugins.flash',
         require 'squa.plugins.lualine',
         require 'squa.plugins.neotree',
         require 'squa.plugins.nvim-cmp',
