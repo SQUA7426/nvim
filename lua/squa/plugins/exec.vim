@@ -38,5 +38,9 @@ augroup exe_code
     
     autocmd FileType rust nnoremap <C-N>
                 \ <C-w>v :term cd %:p:h && rustc % && ./%<
-    
+    " making o-file and compile then
+    autocmd FileType c nnoremap <C-P>
+                \ <C-w>v :term cd %:p:h && gcc -g -fno-stack-protector -c %
+                \ && gcc %<.o -o %<
+                \ && ./%< <CR> a
 augroup END

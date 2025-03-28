@@ -110,7 +110,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
-vim.keymap.set('n', 't', ':wincmd l<CR> a', opts)
+vim.keymap.set('n', '<C-t>', ':wincmd l<CR> a', opts)
 --vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
 vim.api.nvim_create_autocmd('TermOpen', {
     group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
