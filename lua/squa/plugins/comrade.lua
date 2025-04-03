@@ -1,0 +1,4 @@
+return
+{
+    "beeender/ComradeNeovim",
+}
