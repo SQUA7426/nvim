@@ -28,6 +28,11 @@ require('lazy').setup({
         "mg979/vim-visual-multi",
     },
     {
+        -- pacman -S --needed gtk3 glib2 webkit2gtk-4.1 libsoup3
+        "codota/tabnine-nvim",
+        build = "./dl_binaries.sh"
+    },
+    {
         -- lsp
         require 'squa.plugins.lsp.lspconfig',
         require 'squa.plugins.lsp.mason',
