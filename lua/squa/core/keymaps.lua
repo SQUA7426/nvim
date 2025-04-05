@@ -34,6 +34,10 @@ vim.keymap.set("i", "<tab>", function()
   end
 end, { expr = true })
 
+-- Tabnine Enable and Disable
+vim.keymap.set('n', '<leader>tn', ':TabnineEnable<CR>', { desc = 'Enable Tabnine' })
+vim.keymap.set('n', '<leader>td', ':TabnineDisable<CR>', { desc = 'Disable Tabnine' })
+
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
