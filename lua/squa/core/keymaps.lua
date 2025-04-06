@@ -4,14 +4,11 @@ vim.g.maplocalleader = ' ' -- the same as mapleader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set({ 'n', 'v' }, 's', '<Nop>', opts)
 
 vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
 vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
-
--- vim.keymap.set('n', 'c', '<Nop>', opts)
 
 vim.keymap.set({ 'n', 'v' }, '<leader>j', ']mzf%', { desc = "[c]reate folding inside brackets" })
 vim.keymap.set({ 'n', 'v' }, '<leader>jj', 'zo', { desc = "open folding under cursor" })
@@ -20,8 +17,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jc', 'zc', { desc = "[c]lose folding under
 vim.keymap.set({ 'n', 'v' }, '<leader>jC', 'zM', { desc = "[C]lose all foldings" })
 vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under cursor" })
 
-
-vim.keymap.set({ 'n', 'v' }, '<leader>ju', 'zx', { desc = "[u]pdate foldings" })
 
 --- Example integration with Tabnine and LuaSnip; falling back to inserting tab if neither has a completion
 vim.keymap.set("i", "<tab>", function()
@@ -42,9 +37,6 @@ vim.keymap.set('n', '<leader>td', ':TabnineDisable<CR>', { desc = 'Disable Tabni
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
-
--- write w/o autoformatting
--- vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 
 -- delete a single char w/o copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
@@ -82,12 +74,13 @@ vim.keymap.set('n', '<Down>', ':echo "use j!"<CR>', opts)
 vim.keymap.set('n', '<Left>', ':echo "use h!"<CR>', opts)
 vim.keymap.set('n', '<Right>', ':echo "use l!"<CR>', opts)
 
+-- Disable / Enable Tabnine
+vim.keymap.set('n', '<leader>mm', ':TabnineDisable<CR>', { desc = 'Tabnine: disable' })
+vim.keymap.set('n', '<leader>m', ':TabnineEnable<CR>', { desc = 'Tabnine: enable' })
 
 -- Dis-/ able copilot
-opts.desc = 'Copilot: disable'
-vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot: disable' })
-opts.desc = 'Copilot: enable'
-vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot: enable' })
+-- vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot: disable' })
+-- vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot: enable' })
 
 -- Buffers
 opts = { noremap = true, silent = true }
@@ -137,7 +130,6 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-t>', ':wincmd l<CR> a', opts)
---vim.keymap.set('n', '<space>t', '<C-w>v :term <CR>a', opts)
 vim.api.nvim_create_autocmd('TermOpen', {
     group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
     callback = function()
@@ -154,28 +146,23 @@ vim.keymap.set('n', '<space>t', function()
 end, { desc = 'Open terminal' })
 
 
--- Definiere eine Funktion, die das Verhalten bei der Eingabe des Paketnamens übernimmt
 local function compile_and_run_java()
     vim.ui.input('Enter package name: ', function(package_name)
         if package_name then
             local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
             local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
 
-            -- Befehl zum Kompilieren und Ausführen der Java-Datei
             vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
         end
     end)
 end
 
--- Erstelle eine Autocommand-Gruppe
 vim.api.nvim_create_augroup('exe_code', { clear = false })
 
--- Füge den Autocommand hinzu
 vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_code',
     pattern = 'java',
     callback = function()
-        -- Definiere die Tastenkombination für den Java-FileType
         vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
     end,
 })
@@ -191,7 +178,6 @@ local function compile_and_Args()
 		    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
 		    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
 
-		    -- Befehl zum Kompilieren und Ausführen der Java-Datei
 		    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
 		end
     	    end)
@@ -199,15 +185,12 @@ local function compile_and_Args()
     end)
 end
 
--- Erstelle eine Autocommand-Gruppe
 vim.api.nvim_create_augroup('exe_code', { clear = false })
 
--- Füge den Autocommand hinzu
 vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_code',
     pattern = 'java',
     callback = function()
-        -- Definiere die Tastenkombination für den Java-FileType
         vim.keymap.set('n', '<C-L>', compile_and_Args, { noremap = true, silent = true })
     end,
 })
