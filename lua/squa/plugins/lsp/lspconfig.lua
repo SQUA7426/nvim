@@ -36,8 +36,8 @@ return
             opts.desc = "See available [c]ode [a]ctions"
             keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-            opts.desc = "S[m]art rena[m]e"
-            keymap.set("n", "<leader>mm", vim.lsp.buf.rename, opts)
+            opts.desc = "S[m]art [r]ena[m]e"
+            keymap.set("n", "<leader>rm", vim.lsp.buf.rename, opts)
 
             -- opts.desc = "Show buffer diagnostics"
             -- keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
