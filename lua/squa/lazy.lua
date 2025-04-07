@@ -52,5 +52,42 @@ require('lazy').setup({
         require 'squa.plugins.telescope',
         require 'squa.plugins.treesitter',
         require 'squa.plugins.whichkey',
+        require 'lua.squa.plugins.noicenvim'
     }
+})
+
+require('tabnine').setup({
+    disable_auto_comment = true,
+    accept_keymap = "<Tab>",
+    dismiss_keymap = "<C-]>",
+    debounce_ms = 800,
+    suggestion_color = { gui = "#808080", cterm = 244 },
+    exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+    log_file_path = nil, -- absolute path to Tabnine log file
+    ignore_certificate_errors = false,
+    -- workspace_folders = {
+    --   paths = { "/your/project" },
+    --   get_paths = function()
+    --       return { "/your/project" }
+    --   end,
+    -- },
+})
+
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
 })
