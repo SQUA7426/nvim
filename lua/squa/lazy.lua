@@ -52,7 +52,7 @@ require('lazy').setup({
         require 'squa.plugins.telescope',
         require 'squa.plugins.treesitter',
         require 'squa.plugins.whichkey',
-        require 'lua.squa.plugins.noicenvim'
+        require 'squa.plugins.noicenvim'
     }
 })
 
