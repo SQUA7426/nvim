@@ -22,22 +22,22 @@ augroup exe_code
                 \ <C-w>v :term cd %:p:h && rustc % && ./%< <CR>
 
     " compile and using arguments before executing in terminal
-    autocmd FileType python nnoremap <C-N>
+    autocmd FileType python nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && python3 %<CR> :startinsert
 
-    autocmd FileType c nnoremap <C-N>
+    autocmd FileType c nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && gcc % -o %< && ./%<
 
-    autocmd FileType cpp nnoremap <C-N>
+    autocmd FileType cpp nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && g++ % -o %< && ./%<
 
-    autocmd FileType javascript nnoremap <C-N>
+    autocmd FileType javascript nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && nodejs %<CR> :startinsert
 
-    autocmd FileType java nnoremap <C-N>
+    autocmd FileType java nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && javac % && java %<
     
-    autocmd FileType rust nnoremap <C-N>
+    autocmd FileType rust nnoremap <C-B>
                 \ <C-w>v :term cd %:p:h && rustc % && ./%<
     " making o-file and compile then
     autocmd FileType c nnoremap <C-P>
