@@ -141,6 +141,10 @@ return
             on_attach = on_attach,
         })
 
+        lspconfig["texlab"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
         require 'lspconfig'.lua_ls.setup {
             on_init = function(client)
                 if client.workspace_folders then
