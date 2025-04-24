@@ -33,6 +33,9 @@ end, { expr = true })
 vim.keymap.set('n', '<leader>tn', ':TabnineEnable<CR>', { desc = 'Enable Tabnine' })
 vim.keymap.set('n', '<leader>td', ':TabnineDisable<CR>', { desc = 'Disable Tabnine' })
 
+-- Copilot Enable and Disable
+vim.keymap.set('n', '<leader>cn', ':Copilot enable<CR>', { desc = 'Enable Copilot' })
+vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Disable Copilot' })
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
@@ -118,18 +121,24 @@ vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('v', 'p', '"_dP', opts)
 
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic' })
--- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list' })
+-- -- Diagnostic keymaps
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic' })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic' })
+-- -- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list' })
 
 
 -- Terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
-vim.keymap.set('n', '<C-t>', ':wincmd l<CR> a', opts)
+vim.keymap.set('n', '<C-t>', function()
+    vim.cmd('split')
+    vim.cmd.term()
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 20)
+end, { desc = 'Open terminal' })
+
 vim.api.nvim_create_autocmd('TermOpen', {
     group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
     callback = function()
@@ -147,12 +156,26 @@ end, { desc = 'Open terminal' })
 
 
 local function compile_and_run_java()
-    vim.ui.input('Enter package name: ', function(package_name)
-        if package_name then
-            local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
-            local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+    vim.ui.input('record time? y/n: ', function(accept_time)
+        if accept_time == 'y' or accept_time == 'yes' then
+            vim.ui.input('Enter package name: ', function(package_name)
+                if package_name then
+                    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
+                    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
 
-            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
+                end
+            end)
+
+        else
+            vim.ui.input('Enter package name: ', function(package_name)
+                if package_name then
+                    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
+                    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+
+                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+                end
+            end)
         end
     end)
 end
@@ -192,5 +215,24 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'java',
     callback = function()
         vim.keymap.set('n', '<C-L>', compile_and_Args, { noremap = true, silent = true })
+    end,
+})
+
+
+local function run_sql()
+   vim.ui.input('Enter database_name: ', function(db_name)
+        if db_name then
+            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U postgres -d ' .. db_name)
+        end
+    end)
+end
+
+vim.api.nvim_create_augroup('exe_code', { clear = false })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = 'exe_code',
+    pattern = 'sql',
+    callback = function()
+        vim.keymap.set('n', '<C-P>', run_sql, { noremap = true, silent = true })
     end,
 })

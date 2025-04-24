@@ -28,6 +28,7 @@ return
                 toml = { "tablo" },
                 css = { { "prettierd", "prettier" } },
                 scss = { { "prettierd", "prettier" } },
+                sql = { "sql-formatter" },
             }
         })
         vim.keymap.set({ "n", "v" }, "<leader>f", function()

@@ -22,6 +22,7 @@ return
         mason_lspconfig.setup({
             -- List of servers for mason to install
             ensure_installed = {
+                "sqls",
                 "sqlls",
                 "rust_analyzer",
                 "asm_lsp",
