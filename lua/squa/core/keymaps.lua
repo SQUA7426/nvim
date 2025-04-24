@@ -222,7 +222,7 @@ vim.api.nvim_create_autocmd('FileType', {
 local function run_sql()
    vim.ui.input('Enter database_name: ', function(db_name)
         if db_name then
-            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U postgres -d ' .. db_name)
+            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U timtothy -d ' .. db_name)
         end
     end)
 end

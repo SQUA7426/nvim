@@ -1,6 +1,6 @@
 augroup exe_code
     autocmd!
-    
+
     " compile and run code in terminal
     autocmd FileType sql nnoremap <C-M>
                 \ <C-w>h :term cd %:p:h && psql -U postgres -f % <CR>
