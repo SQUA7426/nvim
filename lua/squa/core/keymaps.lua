@@ -223,7 +223,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 
-local function run_sql()
+local function con_sql()
     vim.ui.input('Enter an user: ', function(user_name)
         if user_name then
             vim.ui.input('Enter database_name: ', function(db_name)
@@ -235,12 +235,24 @@ local function run_sql()
     end)
 end
 
+local function compiling_sql()
+    vim.ui.input('Enter an user: ', function(sql_user)
+        if sql_user then
+            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
+        end
+    end)
+end
+
+
 vim.api.nvim_create_augroup('exe_code', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_code',
     pattern = 'sql',
     callback = function()
-        vim.keymap.set('n', '<C-P>', run_sql, { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
+        vim.keymap.set('n', '<C-M>', compiling_sql, { desc = "Compiling sql-file with a written user" })
     end,
 })
+
+

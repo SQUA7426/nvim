@@ -2,12 +2,6 @@ augroup exe_code
     autocmd!
 
     " compile and run code in terminal
-    autocmd FileType sql nnoremap <C-M>
-                \ <C-w>h :term sudo psql -U postgres -f %:p <CR>
-    
-    autocmd FileType sql nnoremap <C-B>
-                \ <C-w>h :term sudo psql -U postgres -f %:p <CR>
-
     autocmd FileType python nnoremap <C-M>
                 \ <C-w>h :term cd %:p:h && python3 %<CR> :startinsert<CR>
 
