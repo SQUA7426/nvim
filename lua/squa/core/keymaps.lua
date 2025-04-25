@@ -212,7 +212,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_java',
     pattern = 'java',
     callback = function()
-        vim.keymap.set('n', '<C-Ü>', compile_and_Args, { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-C>', compile_and_Args, { noremap = true, silent = true })
         vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
     end,
 })
@@ -252,7 +252,7 @@ vim.api.nvim_create_autocmd('FileType', {
     pattern = 'sql',
     callback = function()
         vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
-        vim.keymap.set('n', '<C-Ü>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
+        vim.keymap.set('n', '<C-C>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
         vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with postgres user" })
     end,
 })
