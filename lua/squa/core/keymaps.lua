@@ -218,7 +218,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_code',
     pattern = 'java',
     callback = function()
-        vim.keymap.set('n', '<C-L>', compile_and_Args, { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-Ü>', compile_and_Args, { noremap = true, silent = true })
     end,
 })
 
