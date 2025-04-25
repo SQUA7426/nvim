@@ -160,21 +160,23 @@ local function compile_and_run_java()
         if accept_time == 'y' or accept_time == 'yes' then
             vim.ui.input('Enter package name: ', function(package_name)
                 if package_name then
-                    local file_name_without_extension = vim.fn.expand('%:t:r')            -- Dateiname ohne Erweiterung
+                    local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
                     local class_name = package_name ..
-                    '/' .. file_name_without_extension                                    -- Kombiniere Paketnamen und Dateinamen
+                        '/' ..
+                        file_name_without_extension                            -- Kombiniere Paketnamen und Dateinamen
 
                     vim.cmd('term cd ' ..
-                    vim.fn.expand('%:p:h') ..
-                    ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
+                        vim.fn.expand('%:p:h') ..
+                        ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
                 end
             end)
         else
             vim.ui.input('Enter package name: ', function(package_name)
                 if package_name then
-                    local file_name_without_extension = vim.fn.expand('%:t:r')            -- Dateiname ohne Erweiterung
+                    local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
                     local class_name = package_name ..
-                    '/' .. file_name_without_extension                                    -- Kombiniere Paketnamen und Dateinamen
+                        '/' ..
+                        file_name_without_extension                            -- Kombiniere Paketnamen und Dateinamen
 
                     vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
                 end
@@ -183,15 +185,6 @@ local function compile_and_run_java()
     end)
 end
 
-vim.api.nvim_create_augroup('exe_code', { clear = false })
-
-vim.api.nvim_create_autocmd('FileType', {
-    group = 'exe_code',
-    pattern = 'java',
-    callback = function()
-        vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
-    end,
-})
 
 vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
 
@@ -202,23 +195,25 @@ local function compile_and_Args()
                 if arguments then
                     local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
                     local class_name = package_name ..
-                    '/' .. file_name_without_extension                      -- Kombiniere Paketnamen und Dateinamen
+                        '/' .. file_name_without_extension                     -- Kombiniere Paketnamen und Dateinamen
 
                     vim.cmd('term cd ' ..
-                    vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
+                        vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
                 end
             end)
         end
     end)
 end
 
-vim.api.nvim_create_augroup('exe_code', { clear = false })
+
+vim.api.nvim_create_augroup('exe_java', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-    group = 'exe_code',
+    group = 'exe_java',
     pattern = 'java',
     callback = function()
         vim.keymap.set('n', '<C-Ü>', compile_and_Args, { noremap = true, silent = true })
+        vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
     end,
 })
 
@@ -235,24 +230,29 @@ local function con_sql()
     end)
 end
 
-local function compiling_sql()
+local function compiling_u_sql()
     vim.ui.input('Enter an user: ', function(sql_user)
         if sql_user then
-            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
+            vim.cmd('term cd ' ..
+            vim.fn.expand('%:p:h') .. ' && sudo psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
         end
     end)
 end
 
+local function compiling_sql()
+    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U postgres -f ' .. vim.fn.expand('%p'))
+end
 
-vim.api.nvim_create_augroup('exe_code', { clear = false })
+
+
+vim.api.nvim_create_augroup('exe_sql', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-    group = 'exe_code',
+    group = 'exe_sql',
     pattern = 'sql',
     callback = function()
         vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
-        vim.keymap.set('n', '<C-M>', compiling_sql, { desc = "Compiling sql-file with a written user" })
+        vim.keymap.set('n', '<C-Ü>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
+        vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with postgres user" })
     end,
 })
-
-
