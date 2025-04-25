@@ -20,13 +20,13 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under c
 
 --- Example integration with Tabnine and LuaSnip; falling back to inserting tab if neither has a completion
 vim.keymap.set("i", "<tab>", function()
-  if require("tabnine.keymaps").has_suggestion() then
-    return require("tabnine.keymaps").accept_suggestion()
-  elseif require("luasnip").jumpable(1) then
-    return require("luasnip").jump(1)
-  else
-    return "<tab>"
-  end
+    if require("tabnine.keymaps").has_suggestion() then
+        return require("tabnine.keymaps").accept_suggestion()
+    elseif require("luasnip").jumpable(1) then
+        return require("luasnip").jump(1)
+    else
+        return "<tab>"
+    end
 end, { expr = true })
 
 -- Tabnine Enable and Disable
@@ -160,18 +160,21 @@ local function compile_and_run_java()
         if accept_time == 'y' or accept_time == 'yes' then
             vim.ui.input('Enter package name: ', function(package_name)
                 if package_name then
-                    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
-                    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+                    local file_name_without_extension = vim.fn.expand('%:t:r')            -- Dateiname ohne Erweiterung
+                    local class_name = package_name ..
+                    '/' .. file_name_without_extension                                    -- Kombiniere Paketnamen und Dateinamen
 
-                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
+                    vim.cmd('term cd ' ..
+                    vim.fn.expand('%:p:h') ..
+                    ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
                 end
             end)
-
         else
             vim.ui.input('Enter package name: ', function(package_name)
                 if package_name then
-                    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
-                    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+                    local file_name_without_extension = vim.fn.expand('%:t:r')            -- Dateiname ohne Erweiterung
+                    local class_name = package_name ..
+                    '/' .. file_name_without_extension                                    -- Kombiniere Paketnamen und Dateinamen
 
                     vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
                 end
@@ -195,15 +198,16 @@ vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = t
 local function compile_and_Args()
     vim.ui.input('Enter package name: ', function(package_name)
         if package_name then
-	    vim.ui.input('Enter Arguments: ', function(arguments)
-        	if arguments then
+            vim.ui.input('Enter Arguments: ', function(arguments)
+                if arguments then
+                    local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+                    local class_name = package_name ..
+                    '/' .. file_name_without_extension                      -- Kombiniere Paketnamen und Dateinamen
 
-		    local file_name_without_extension = vim.fn.expand('%:t:r')      -- Dateiname ohne Erweiterung
-		    local class_name = package_name .. '/' .. file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
-
-		    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
-		end
-    	    end)
+                    vim.cmd('term cd ' ..
+                    vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
+                end
+            end)
         end
     end)
 end
@@ -220,7 +224,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 
 local function run_sql()
-   vim.ui.input('Enter database_name: ', function(db_name)
+    vim.ui.input('Enter database_name: ', function(db_name)
         if db_name then
             vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U timothy -d ' .. db_name)
         end
