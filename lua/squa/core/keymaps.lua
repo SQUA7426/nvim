@@ -5,8 +5,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
-vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
+-- vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
+-- vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
@@ -186,7 +186,7 @@ local function compile_and_run_java()
 end
 
 
-vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
 
 local function compile_and_Args()
     vim.ui.input('Enter package name: ', function(package_name)
@@ -223,7 +223,7 @@ local function con_sql()
         if user_name then
             vim.ui.input('Enter database_name: ', function(db_name)
                 if db_name then
-                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U ' .. user_name .. ' -d ' .. db_name)
+                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U ' .. user_name .. ' -d ' .. db_name)
                 end
             end)
         end
@@ -234,13 +234,13 @@ local function compiling_u_sql()
     vim.ui.input('Enter an user: ', function(sql_user)
         if sql_user then
             vim.cmd('term cd ' ..
-            vim.fn.expand('%:p:h') .. ' && sudo psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
+            vim.fn.expand('%:p:h') .. ' && psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
         end
     end)
 end
 
 local function compiling_sql()
-    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && sudo psql -U postgres -f ' .. vim.fn.expand('%p'))
+    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U timothy -f ' .. vim.fn.expand('%p'))
 end
 
 
@@ -253,6 +253,6 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function()
         vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
         vim.keymap.set('n', '<C-C>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
-        vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with postgres user" })
+        vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with timothy user" })
     end,
 })
