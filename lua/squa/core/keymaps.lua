@@ -6,7 +6,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 local opts = { noremap = true, silent = true }
 
 -- vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
--- vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
+vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
@@ -93,8 +93,18 @@ vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { desc = 'previous buffer' })
 vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 
 -- Window management
-vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })   -- vertical split
-vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
+-- vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })   -- vertical split
+vim.keymap.set('n', '<leader>v', function()
+    vim.cmd.vnew()
+    vim.cmd.wincmd('L')
+    vim.api.nvim_win_set_width(0, 80)
+end, { desc = '[V]ertikal Split' })
+-- vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
+vim.keymap.set('n', '<leader>h', function()
+    vim.cmd('split')
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 10)
+end, { desc = '[H]orizontal Split' })
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close buffer' })
 
@@ -136,7 +146,7 @@ vim.keymap.set('n', '<C-t>', function()
     vim.cmd('split')
     vim.cmd.term()
     vim.cmd.wincmd('J')
-    vim.api.nvim_win_set_height(0, 20)
+    vim.api.nvim_win_set_height(0, 10)
 end, { desc = 'Open terminal' })
 
 vim.api.nvim_create_autocmd('TermOpen', {
@@ -186,7 +196,7 @@ local function compile_and_run_java()
 end
 
 
--- vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
 
 local function compile_and_Args()
     vim.ui.input('Enter package name: ', function(package_name)

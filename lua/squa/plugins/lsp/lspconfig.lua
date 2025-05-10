@@ -99,6 +99,12 @@ return
             capabilities = capabilities,
             on_attach = on_attach,
         })
+        -- configure json server
+        lspconfig["jsonls"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
 
         -- configure emmet server
         lspconfig["emmet_ls"].setup({
