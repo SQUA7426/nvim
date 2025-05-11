@@ -40,7 +40,7 @@ augroup exe_code
                 \ <C-w>h :term cd %:p:h && rustc % && ./%<
 
     autocmd FileType html nnoremap <C-B>
-                \ <C-w>h :term cd %:p:h && firefox % &<CR>
+                \ :term firefox % <CR>
 
     " making o-file and compile then
     "autocmd FileType c, cpp nnoremap <C-P>
