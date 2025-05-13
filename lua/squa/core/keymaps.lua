@@ -275,6 +275,6 @@ vim.api.nvim_create_autocmd('FileType', {
     group = 'exe_valgrind',
     pattern = 'c',
     callback = function()
-        vim.keymap.set('n', '<C-P>', ':term valgrind --leak-check=full --show-leak-kinds=all /.//%< ', { desc = "executing and showing valgrind leaks"})
+        vim.keymap.set('n', '<C-P>', ':term valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all /.//%< ', { desc = "executing and showing valgrind leaks"})
     end,
 })
