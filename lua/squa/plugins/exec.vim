@@ -42,9 +42,4 @@ augroup exe_code
     autocmd FileType html nnoremap <C-B>
                 \ :term firefox % <CR>
 
-    " making o-file and compile then
-    "autocmd FileType c, cpp nnoremap <C-P>
-    "            \ <C-w>h :term cd %:p:h
-    "            \ && gcc %<.o -o %<
-    "            \ && ./%< <CR> a
 augroup END

@@ -3,10 +3,12 @@ vim.g.maplocalleader = ' ' -- the same as mapleader
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<C-D>', '<Nop>', { silent = true })
+
 local opts = { noremap = true, silent = true }
 
 -- vim.keymap.set({ 'n', 'v' }, '<C-N>', '<Nop>', opts)
-vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', opts)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', opts)
 
@@ -264,5 +266,15 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
         vim.keymap.set('n', '<C-C>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
         vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with timothy user" })
+    end,
+})
+
+vim.api.nvim_create_augroup('exe_gdb', { clear = false })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = 'exe_gdb',
+    pattern = 'c',
+    callback = function()
+        vim.keymap.set('n', '<C-P>', ':term gdb /.//%< <CR>', { desc = "executing gdb"})
     end,
 })
