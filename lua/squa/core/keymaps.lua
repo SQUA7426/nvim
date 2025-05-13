@@ -269,12 +269,12 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.api.nvim_create_augroup('exe_gdb', { clear = false })
+vim.api.nvim_create_augroup('exe_valgrind', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-    group = 'exe_gdb',
+    group = 'exe_valgrind',
     pattern = 'c',
     callback = function()
-        vim.keymap.set('n', '<C-P>', ':term gdb /.//%< <CR>', { desc = "executing gdb"})
+        vim.keymap.set('n', '<C-P>', ':term valgrind --leak-check=full --show-leak-kinds=all /.//%< ', { desc = "executing and showing valgrind leaks"})
     end,
 })
