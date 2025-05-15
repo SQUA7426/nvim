@@ -132,7 +132,13 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- keep last yanked when pasting
 vim.keymap.set('v', 'p', '"_dP', opts)
 
-
+vim.keymap.set('n', '<leader>kk', function()
+  if (vim.o.relativenumber == true) then
+    vim.o.relativenumber = false
+  else
+    vim.o.relativenumber = true
+  end
+end, { desc = "reverse polarity of relativenumbers"})
 -- -- Diagnostic keymaps
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic' })
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'goto next Diagnostic' })
