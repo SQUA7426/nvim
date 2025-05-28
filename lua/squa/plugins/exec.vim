@@ -41,5 +41,6 @@ augroup exe_code
 
     autocmd FileType html nnoremap <C-B>
                 \ :term firefox % <CR>
-
+    autocmd FileType lua nnoremap <C-B>
+                \ :term lua % <CR>
 augroup END
