@@ -87,7 +87,7 @@ return
         vim.keymap.set('n', '<leader>k', builtin.keymaps, { desc = 'Search [K]eymaps' })
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
         vim.keymap.set('n', '<leader>tt', builtin.builtin, { desc = 'Search Select [T]elescope' })
-        vim.keymap.set('n', '<leader>wo', builtin.grep_string, { desc = 'Search current [Wo]rd' })
+        -- vim.keymap.set('n', '<leader>wo', builtin.grep_string, { desc = 'Search current [Wo]rd' })
         vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = '[S]earch by [G]rep' })
         vim.keymap.set('n', '<C-D>', builtin.diagnostics, { desc = 'Search [D]ia[g]nostics' })
         vim.keymap.set('n', '<leader>re', builtin.resume, { desc = 'Search [Re]sume' })

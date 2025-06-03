@@ -92,10 +92,11 @@ require("noice").setup({
   },
   messages = {
     enabled = false,
+    view = "popup",
   },
   errors = {
     -- options for the message history that you get with `:Noice`
-    view = "cmdline",
+    view = "popup",
     opts = { enter = true, format = "details" },
     filter = { error = true },
     filter_opts = { reverse = true },
