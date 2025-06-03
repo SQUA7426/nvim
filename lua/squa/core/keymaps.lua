@@ -145,7 +145,7 @@ end, { desc = "reverse polarity of relativenumbers"})
 -- -- vim.keymap.set( 'n', '<leader>d', vim.diagnostic.open_float, { desc = 'Diagnostic: open float'} )
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostic: set loc list' })
 
-
+-- vim.api.nvim_set_hl(0, 'Visual', { fg = "#E06C75" })
 -- Terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
