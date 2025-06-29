@@ -6,9 +6,9 @@ vim.o.linebreak = true
 vim.o.mouse = 'a'
 vim.o.autoindent = true
 
-vim.o.shiftwidth = 2
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
+vim.o.shiftwidth = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
 vim.o.expandtab = true
 
 -- Enable break indent
@@ -21,6 +21,8 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- disable copilot
+vim.g.copilot_enabled = false
 
 -- set colorcolumn at 80 characters
 vim.opt.colorcolumn = '80'

@@ -5,6 +5,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<C-D>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'n', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
 
@@ -54,7 +55,7 @@ vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 vim.keymap.set('n', 'x', '"_x', opts)
 
 -- find the center
-vim.keymap.set('n', 'n', '50%<CR>', opts)
+vim.keymap.set('n', 'N', '50%<CR>', opts)
 -- vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 
@@ -90,7 +91,7 @@ vim.keymap.set('n', '<Right>', ':echo "use l!"<CR>', opts)
 -- vim.keymap.set('n', '<leader>m', ':TabnineEnable<CR>', { desc = 'Tabnine: enable' })
 
 -- Dis-/ able copilot
--- vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot: disable' })
+vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot: disable' })
 -- vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot: enable' })
 
 -- Buffers
@@ -285,9 +286,9 @@ vim.api.nvim_create_augroup('exe_valgrind', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
   group = 'exe_valgrind',
-  pattern = 'c',
+  pattern = {'c', 'cpp'},
   callback = function()
-    vim.keymap.set('n', '<C-P>', ':term valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all ./%< ',
+    vim.keymap.set('n', '<C-P>', ':term valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./%< ',
       { desc = "executing and showing valgrind leaks" })
   end,
 })

@@ -8,6 +8,8 @@ return
         "L3MON4D3/LuaSnip",             --snippet engine
         "saadparwaiz1/cmp_luasnip",     -- for autocompletion
         "rafamadriz/friendly-snippets", -- useful snippets for other languages
+        -- "honza/vim-snippets",
+        -- "SirVer/ultisnips",
     },
     config = function()
         local cmp = require("cmp")

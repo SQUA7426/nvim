@@ -37,7 +37,7 @@ require('lazy').setup({
     require 'squa.plugins.lsp.lspconfig',
     require 'squa.plugins.lsp.mason',
     require 'squa.plugins.lsp.autoformat',
-    -- require 'squa.plugins.lsp.copilot',
+    require 'squa.plugins.lsp.copilot',
     -- not lsp
     require 'squa.plugins.autopairs',
     require 'squa.plugins.bufferline',
@@ -51,6 +51,7 @@ require('lazy').setup({
     require 'squa.plugins.showkeys',
     require 'squa.plugins.telescope',
     require 'squa.plugins.treesitter',
+    require 'squa.plugins.vim-dadbod',
     require 'squa.plugins.whichkey',
     require 'squa.plugins.noicenvim'
   }
@@ -107,7 +108,7 @@ require("noice").setup({
     -- event is always "notify" and kind can be any log level as a string
     -- The default routes will forward notifications to nvim-notify
     -- Benefit of using Noice for this is the routing and consistent history view
-    enabled = true,
+    enabled = false,
     view = "cmdline",
   },
 })

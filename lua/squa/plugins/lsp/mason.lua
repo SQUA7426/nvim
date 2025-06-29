@@ -40,6 +40,9 @@ return
                 "matlab_ls",
                 "texlab",
                 "jsonls",
+                -- "java_language_server",
+                "pkgbuild_language_server",
+                "bashls",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
