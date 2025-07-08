@@ -181,21 +181,21 @@ end, { desc = 'Open terminal' })
 
 
 local function compile_and_run_java()
-  vim.ui.input('record time? y/n: ', function(accept_time)
-    if accept_time == 'y' or accept_time == 'yes' then
-      vim.ui.input('Enter package name: ', function(package_name)
-        if package_name then
-          local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
-          local class_name = package_name ..
-              '/' ..
-              file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
-
-          vim.cmd('term cd ' ..
-            vim.fn.expand('%:p:h') ..
-            ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
-        end
-      end)
-    else
+  -- vim.ui.input('record time? y/n: ', function(accept_time)
+  --   if accept_time == 'y' or accept_time == 'yes' then
+  --     vim.ui.input('Enter package name: ', function(package_name)
+  --       if package_name then
+  --         local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+  --         local class_name = package_name ..
+  --             '/' ..
+  --             file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+  --
+  --         vim.cmd('term cd ' ..
+  --           vim.fn.expand('%:p:h') ..
+  --           ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
+  --       end
+  --     end)
+  --   else
       vim.ui.input('Enter package name: ', function(package_name)
         if package_name then
           local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
@@ -205,8 +205,8 @@ local function compile_and_run_java()
 
           vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
         end
-      end)
-    end
+    --   end)
+    -- end
   end)
 end
 

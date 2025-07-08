@@ -111,16 +111,16 @@ return
         })
 
         -- configure pkgbuild server
-        lspconfig["pkgbuild_language_server"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
+        -- lspconfig["pkgbuild_language_server"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
 
         -- configure jave-language-server
-        lspconfig["java_language_server"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
+        -- lspconfig["java_language_server"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
 
         -- configure emmet server
         lspconfig["emmet_ls"].setup({
