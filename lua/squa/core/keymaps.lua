@@ -74,6 +74,12 @@ vim.api.nvim_set_keymap('n', 'E', '$', opts)
 vim.api.nvim_set_keymap('v', 'E', '$', opts)
 
 vim.cmd("source ~/.config/nvim/lua/squa/plugins/exec.vim")
+
+
+-- align in visual mode
+vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Shift' })
+vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Shift' })
+
 -- Resize with arrows
 -- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
 -- vim.keymap.set( 'n', '<Down>', ':resize +2<CR>', opts)
