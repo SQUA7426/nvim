@@ -110,6 +110,11 @@ return
             on_attach = on_attach,
         })
 
+        -- configure arduino-language-server
+        lspconfig["arduino_language_server"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
         -- configure pkgbuild server
         -- lspconfig["pkgbuild_language_server"].setup({
         --     capabilities = capabilities,
@@ -146,6 +151,11 @@ return
         })
 
         lspconfig["rust_analyzer"].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+
+        lspconfig["cmake"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })

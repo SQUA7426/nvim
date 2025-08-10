@@ -43,6 +43,8 @@ return
                 -- "java_language_server",
                 -- "pkgbuild_language_server",
                 "bashls",
+                "cmake",
+                "arduino_language_server",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
