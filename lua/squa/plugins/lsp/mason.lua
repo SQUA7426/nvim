@@ -25,7 +25,7 @@ return
                 "sqls",
                 "sqlls",
                 "rust_analyzer",
-                "asm_lsp",
+                -- "asm_lsp",
                 "clangd",
                 "html",
                 "cssls",
