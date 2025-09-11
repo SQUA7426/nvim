@@ -8,6 +8,8 @@ return
         conform.setup({
             formatters_by_ft = {
                 lua = { "stylua" },
+                c = { "clang-format" },
+                cpp = { "clang-format" },
                 svelte = { { "prettierd", "prettier" } },
                 javascript = { { "prettierd", "prettier" } },
                 typescript = { { "prettierd", "prettier" } },

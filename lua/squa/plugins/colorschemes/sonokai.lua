@@ -10,7 +10,9 @@ return
         --  `'andromeda'`, `'shusia'`, `'maia'`,
         -- `'espresso'`
         -- Default value:      `'default'`
-        vim.g.sonokai_enable_italic = true
-        vim.cmd.colorscheme('sonokai')
+        -- require("sonokai").setup({
+        -- vim.g.sonokai_enable_italic = true
+        -- vim.cmd.colorscheme('sonokai')
+        -- })
     end
 }

@@ -29,10 +29,27 @@ return
                 end,
             },
             mapping = cmp.mapping.preset.insert({
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if luasnip.jumpable(1) then
+                        luasnip.jump(1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+
+                -- Jump backward in snippet
+                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                    if luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
                 ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                 ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
                 -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
+
                 ["<C-Space>"] = cmp.mapping.complete(), -- show complete suggestion
                 ["<C-e>"] = cmp.mapping.abort(),        -- close complete window
                 ["<CR>"] = cmp.mapping.confirm({ select = false }),
@@ -44,6 +61,7 @@ return
                 { name = "buffer" },  -- text within current buffer
                 { name = "path" },    -- file system paths
             }),
+            preselect = cmp.PreselectMode.None,
         })
     end,
 }

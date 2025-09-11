@@ -35,7 +35,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under c
 vim.keymap.set({ "n", "v" }, '<C-F>', function()
   vim.ui.input("Enter a pattern: ", function(pattern)
     if pattern then
-      vim.cmd('/\\<' .. pattern .. '\\>')
+      -- vim.cmd('/\\<' .. pattern .. '\\>')
+        vim.cmd('/' .. pattern)
     end
   end)
 end, { desc = "Find regex" })
@@ -57,8 +58,6 @@ vim.keymap.set('n', 'x', '"_x', opts)
 -- find the center
 vim.keymap.set('n', 'N', '50%<CR>', opts)
 -- vim.keymap.set('n', 'N', 'Nzzzv', opts)
-
-
 
 -- showkeysToggle
 vim.keymap.set('n', '<leader>sk', ':ShowkeysToggle<CR>', { desc = "Toggling Showkeys" })
