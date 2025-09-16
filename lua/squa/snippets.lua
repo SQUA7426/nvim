@@ -23,6 +23,16 @@ end, { silent = true, desc = "luasnip change_choice(-1)" })
 
 ls.add_snippets("scala", {
     snip({
+        trig = "foreach",
+        name = "foreach",
+        desc = "foreach Loop"
+    }, {
+        t("foreach("),
+        i(1, "action"),
+        t(")")
+    }
+    ),
+    snip({
         trig = "groupBy",
         name = "groupBy",
         desc = "Create a groupBy"
@@ -84,6 +94,14 @@ ls.add_snippets("scala", {
         t("minBy("),
         c(1, { t("_._1"), t("_._2"), }),
         t(")")
+    }
+    ),
+    snip({
+        trig = "zipWithIndex",
+        name = "zipWithIndex",
+        desc = "zipWithIndex"
+    }, {
+        t("zipWithIndex"),
     }
     ),
     snip({
