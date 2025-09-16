@@ -5,7 +5,7 @@ return
     priority = 1000,
     config = function()
         -- require("solarized").setup({
-        vim.cmd.colorscheme('solarized')
+        -- vim.cmd.colorscheme('solarized')
         -- })
     end
 }

@@ -5,7 +5,7 @@ return
     priority = 1000,
     config = function()
         -- require("cyberdream.nvim").setup({
-        -- vim.cmd.colorscheme('cyberdream')
+        vim.cmd.colorscheme('cyberdream')
         -- })
     end
 }

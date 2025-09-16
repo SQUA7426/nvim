@@ -16,6 +16,9 @@ augroup exe_code
 
     autocmd FileType java nnoremap <C-M>
                 \ <C-w>h :term cd %:p:h && javac % && java %< <CR> a
+
+    autocmd FileType scala nnoremap <C-M>
+                \ <C-w>h :term cd %:p:h && scalac % && scala % <CR> a
     
     autocmd FileType rust nnoremap <C-M>
                 \ <C-w>h :term cd %:p:h && rustc % && ./%< <CR>
@@ -41,6 +44,7 @@ augroup exe_code
 
     autocmd FileType html nnoremap <C-B>
                 \ :term firefox % <CR>
+
     autocmd FileType lua nnoremap <C-B>
                 \ :term lua % <CR>
 augroup END
