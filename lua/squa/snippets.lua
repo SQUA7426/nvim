@@ -23,13 +23,124 @@ end, { silent = true, desc = "luasnip change_choice(-1)" })
 
 ls.add_snippets("scala", {
     snip({
+        trig = "import",
+        name = "import",
+        desc = "import scala lib"
+    }, {
+        c(1, {
+            t("import scala.collection.mutable.Array"),
+            t("import scala.collection.immutable.Array"),
+            t("import scala.collection.mutable.ArrayBuffer"),
+            t("import scala.collection.immutable.ArrayBuffer"),
+            t("import scala.collection.mutable.List"),
+            t("import scala.collection.immutable.List"),
+            t("import scala.collection.mutable.Seq"),
+            t("import scala.collection.immutable.Seq"),
+            t("import scala.collection.mutable.Set"),
+            t("import scala.collection.immutable.Set"),
+            t("import scala.collection.mutable.Map"),
+            t("import scala.collection.immutable.Map"),
+        })
+    }
+    ),
+    snip({
+        trig = "sortBy",
+        name = "sortBy",
+        desc = "sortBy either by x=>x (asc), x=>-x (desc), '_._1' or '_._2'"
+    }, {
+        c(1, { {
+            t("sortBy("),
+            i(1, "action"),
+            t(")")
+        }, {
+            t("sortBy("),
+            i(1, "x"),
+            t(" => "),
+            i(2, "x"),
+            t(")")
+        }, {
+            t("sortBy("),
+            i(1, "x"),
+            t(" => "),
+            i(2, "-x"),
+            t(")")
+        }, {
+            t("sortBy("),
+            i(1, "_._1"),
+            t(")")
+        }, {
+            t("sortBy("),
+            i(1, "_._2"),
+            t(")")
+        } })
+    }
+    ),
+    snip({
+        trig = "if",
+        name = "if",
+        desc = "if"
+    }, {
+        t("if("),
+        i(1, "condition"),
+        t(") { "),
+        i(2, "do:"),
+        t(" }")
+    }
+    ),
+    snip({
+        trig = "if...else",
+        name = "if...else",
+        desc = "if...else"
+    }, {
+        t("if("),
+        i(1, "condition"),
+        t(") { "),
+        i(2, "do:"),
+        t(" } else if("),
+        i(3, "condition"),
+        t(") { "),
+        i(4, "do:"),
+        t(" } else { "),
+        i(5, "do:"),
+        t("}")
+    }
+    ),
+    snip({
+        trig = "if...elseif...else",
+        name = "ifelse",
+        desc = "ifelse"
+    }, {
+        t("if("),
+        i(1, "condition"),
+        t(") { "),
+        i(2, "do:"),
+        t(" } else { "),
+        i(3, "do:"),
+        t("}")
+    }
+    ),
+    snip({
         trig = "foreach",
         name = "foreach",
-        desc = "foreach Loop"
+        desc = "foreach Loop switching between i => i and (action) with '<C-j>' and '<C-k>'"
     }, {
         t("foreach("),
-        i(1, "action"),
+        c(1, { { i(1, "i"), t(" => "), i(2, "i") }, i(1, "action")}),
         t(")")
+    }
+    ),
+    snip({
+        trig = "for",
+        name = "for",
+        desc = "for Loop"
+    }, {
+        t("for("),
+        i(1, "element"),
+        t(" <- "),
+        i(2, "elements"),
+        t(") { "),
+        i(3, "do:"),
+        t(" }")
     }
     ),
     snip({
@@ -49,11 +160,59 @@ ls.add_snippets("scala", {
     }
     ),
     snip({
+        trig = "length",
+        name = "length",
+        desc = "length"
+    }, {
+        t("length")
+    }
+    ),
+    snip({
+        trig = "toDouble",
+        name = "toDouble",
+        desc = "toDouble"
+    }, {
+        t("toDouble")
+    }
+    ),
+    snip({
+        trig = "toLong",
+        name = "toLong",
+        desc = "String to Long"
+    }, {
+        t("toDouble.toLong")
+    }
+    ),
+    snip({
+        trig = "toInt",
+        name = "toInt",
+        desc = "toInt"
+    }, {
+        t("toInt")
+    }
+    ),
+    snip({
+        trig = "asChar",
+        name = "asChar",
+        desc = "Int asChar"
+    }, {
+        t("asChar")
+    }
+    ),
+    snip({
         trig = "toList",
         name = "toList",
         desc = "toList"
     }, {
         t("toList")
+    }
+    ),
+    snip({
+        trig = "toSet",
+        name = "toSet",
+        desc = "toSet"
+    }, {
+        t("toSet")
     }
     ),
     snip({
@@ -65,11 +224,139 @@ ls.add_snippets("scala", {
     }
     ),
     snip({
+        trig = "toArray",
+        name = "toArray",
+        desc = "toArray"
+    }, {
+        t("toArray")
+    }
+    ),
+    snip({
         trig = "flatten",
         name = "flatten",
         desc = "flatten"
     }, {
         t("flatten")
+    }
+    ),
+    snip({
+        trig = "to",
+        name = "to",
+        desc = "from lowerbound (included) to upperbound (included)"
+    }, {
+        i(1, "_"),
+        t(" to "),
+        i(2, "_")
+    }
+    ),
+    snip({
+        trig = "to ... by",
+        name = "to-by",
+        desc = "from lowerbound (included) to upperbound (included) by step"
+    }, {
+        i(1, "_"),
+        t(" to "),
+        i(2, "_"),
+        t(" by "),
+        i(3, "step")
+    }
+    ),
+    snip({
+        trig = "until",
+        name = "until",
+        desc = "from lowerbound (included) until upperbound (excluded)"
+    }, {
+        i(1, "_"),
+        t(" until "),
+        i(2, "_")
+    }
+    ),
+    snip({
+        trig = "until ... by",
+        name = "until-by",
+        desc = "from lowerbound (included) until upperbound (excluded) by step"
+    }, {
+        i(1, "_"),
+        t(" until "),
+        i(2, "_"),
+        t(" by "),
+        i(3, "step")
+    }
+    ),
+    snip({
+        trig = "Range",
+        name = "Range",
+        desc = "from lowerbound (included) to upperbound (exluded)"
+    }, {
+        t("Range("),
+        i(1, "_"),
+        t(","),
+        i(2, "_"),
+        t(")")
+    }
+    ),
+    snip({
+        trig = "Range.inclusive",
+        name = "Range.inclusive",
+        desc = "from lowerbound (included) to upperbound (included)"
+    }, {
+        t("Range.inclusive("),
+        i(1, "_"),
+        t(","),
+        i(2, "_"),
+        t(")")
+    }
+    ),
+    snip({
+        trig = "start",
+        name = "start",
+        desc = "start of a Range"
+    }, {
+        t("start")
+    }
+    ),
+    snip({
+        trig = "end",
+        name = "end",
+        desc = "end of a normal Range"
+    }, {
+        t("end")
+    }
+    ),
+    snip({
+        trig = "last",
+        name = "last",
+        desc = "last of an inclusive Range"
+    }, {
+        t("last")
+    }
+    ),
+    snip({
+        trig = "step",
+        name = "step",
+        desc = "step of a Range"
+    }, {
+        t("step")
+    }
+    ),
+    snip({
+        trig = "compare",
+        name = "compare",
+        desc = "compare two Ints"
+    }, {
+        t("compare("),
+        i(1, "value"),
+        t(")")
+    }
+    ),
+    snip({
+        trig = "compareTo",
+        name = "compareTo",
+        desc = "compareTo two Strings"
+    }, {
+        t("compareTo("),
+        i(1, "String"),
+        t(")")
     }
     ),
     snip({
@@ -347,6 +634,40 @@ ls.add_snippets("scala", {
             t(")") }
         , {
             t("Array["),
+            i(2, "type"),
+            t("]("),
+            i(3, "elements"),
+            t(")") }
+        }),
+    }
+    ),
+    snip({
+        trig = "Set",
+        name = "Set",
+        desc = "Create a Set"
+    }, {
+        c(1, { {
+            t("val "),
+            i(1, "Seqname"),
+            t(": Set["),
+            i(2, "type"),
+            t("] = Set("),
+            i(3, "elements"),
+            t(")") }
+        , {
+            t("var "),
+            i(1, "Seqname"),
+            t(": Set["),
+            i(2, "type"),
+            t("] = Set("),
+            i(3, "elements"),
+            t(")") }
+        , {
+            t("Set("),
+            i(1, "elements"),
+            t(")") }
+        , {
+            t("Set["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
