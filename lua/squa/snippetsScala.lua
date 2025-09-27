@@ -25,7 +25,7 @@ ls.add_snippets("scala", {
     snip({
         trig = "import",
         name = "import",
-        desc = "import scala lib"
+        desc = "import scala collections"
     }, {
         c(1, {
             t("import scala.collection.mutable.Array"),
@@ -40,6 +40,32 @@ ls.add_snippets("scala", {
             t("import scala.collection.immutable.Set"),
             t("import scala.collection.mutable.Map"),
             t("import scala.collection.immutable.Map"),
+            t("import scala.collection.mutable.Range"),
+            t("import scala.collection.immutable.Range"),
+        })
+    }
+    ),
+    snip({
+        trig = "import",
+        name = "import",
+        desc = "import scala libs"
+    }, {
+        c(1, {
+            t("import scala.util.Random"),
+            t("import scala.util.Control"),
+            t("import scala.util.control.Breaks._"),
+            t("import scala.util.Hashing"),
+            t("import scala.util.Matching"),
+        })
+    }
+    ),
+    snip({
+        trig = "import",
+        name = "import",
+        desc = "import scala io libs"
+    }, {
+        c(1, {
+            t("import scala.io.Source"),
         })
     }
     ),
@@ -125,7 +151,7 @@ ls.add_snippets("scala", {
         desc = "foreach Loop switching between i => i and (action) with '<C-j>' and '<C-k>'"
     }, {
         t("foreach("),
-        c(1, { { i(1, "i"), t(" => "), i(2, "i") }, i(1, "action")}),
+        c(1, { { i(1, "i"), t(" => "), i(2, "i") }, i(1, "action") }),
         t(")")
     }
     ),
@@ -141,6 +167,25 @@ ls.add_snippets("scala", {
         t(") { "),
         i(3, "do:"),
         t(" }")
+    }
+    ),
+    snip({
+        trig = "case",
+        name = "case",
+        desc = "case"
+    }, {
+        t("case "),
+        i(1, "1"),
+        t(" => "),
+        i(2, "one")
+    }
+    ),
+    snip({
+        trig = "break",
+        name = "break",
+        desc = "break"
+    }, {
+        t("break")
     }
     ),
     snip({
@@ -197,6 +242,25 @@ ls.add_snippets("scala", {
         desc = "Int asChar"
     }, {
         t("asChar")
+    }
+    ),
+    snip({
+        trig = "mkString",
+        name = "mkString",
+        desc = "mkString converts Integer of an Array to a String, which can be printed"
+    }, {
+        c(1, {
+            { t("mkString") },
+            { t("_._mkStr("), i(1, "String"), t(")") },
+        })
+    }
+    ),
+    snip({
+        trig = "reverse",
+        name = "reverse",
+        desc = "reverse the char arrangement of a String"
+    }, {
+        t("reverse")
     }
     ),
     snip({
@@ -396,6 +460,22 @@ ls.add_snippets("scala", {
     }
     ),
     snip({
+        trig = "abs",
+        name = "abs",
+        desc = "absolut positive value"
+    }, {
+        t("abs")
+    }
+    ),
+    snip({
+        trig = "sum",
+        name = "sum",
+        desc = "sums the content of an Array, List, Seq, Collection, ArrayBuffer ..."
+    }, {
+        t("sum")
+    }
+    ),
+    snip({
         trig = "filter",
         name = "filter",
         desc = "Create a filter switching between '==', t'!=', '>', '<', '>=' and '<=' with <C-j> and <C-k>"
@@ -425,7 +505,7 @@ ls.add_snippets("scala", {
         desc = "Create a map and choosing between 'i => i', '_._1' and '_._2' with <C-j> and <C-k>"
     }, {
         t("map("),
-        c(1, { { i(1, "i"), t(" => "), i(2, "i") }, t("_._1"), t("_._2"), }),
+        c(1, { { i(1, "i"), t(" => "), i(2, "i") }, t("_._1"), t("_._2"), { t("_._mkStr("), i(1, "String"), t(")"), }, }),
         t(")")
     }
     ),
@@ -455,6 +535,16 @@ ls.add_snippets("scala", {
         desc = "zipWithIndex"
     }, {
         t("zipWithIndex"),
+    }
+    ),
+    snip({
+        trig = "addOne",
+        name = "addOne",
+        desc = "Adding one element to a mutable ArrayBuffer"
+    }, {
+        t("addOne("),
+        i(1, "element"),
+        t(")")
     }
     ),
     snip({
@@ -604,6 +694,16 @@ ls.add_snippets("scala", {
             t("]("),
             i(3, "elements"),
             t(")") }
+        , {
+            t("val "),
+            i(1, "listname"),
+            t(" = "),
+            i(2, "1 :: 3 :: 5 :: Nil") }
+        , {
+            t("var "),
+            i(1, "listname"),
+            t(" = "),
+            i(2, "Nil :: 3 :: 5 :: 17") }
         }),
     }
     ),
@@ -709,4 +809,20 @@ ls.add_snippets("scala", {
         }),
     }
     ),
+    snip({
+        trig = "fromFile",
+        name = "fromFile",
+        desc = "opens a file with filename"
+    }, {
+        t("scala.io.Source.fromFile("),
+        i(1, "filename"),
+        t(")")
+    }),
+    snip({
+        trig = "close",
+        name = "close",
+        desc = "closes an opened File"
+    }, {
+        t("close")
+    })
 })
