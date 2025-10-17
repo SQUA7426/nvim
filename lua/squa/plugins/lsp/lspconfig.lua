@@ -18,26 +18,28 @@ return
         local on_attach = function(client, bufnr)
             opts.buffer = bufnr
 
+            vim.g.mapleader = ' '      -- set the mapleader to Space
+            vim.g.maplocalleader = ' ' -- the same as mapleader
             opts.desc = "[S]how L[S]P references"
-            keymap.set("n", "gss", "<cmd>Telescope lsp_references<CR>", opts)
+            vim.keymap.set("n", "<leader>gss", "<cmd>Telescope lsp_references<CR>", opts)
 
             opts.desc = "Go to d[ec]laration"
-            keymap.set("n", "ec", vim.lsp.buf.declaration, opts)
+            vim.keymap.set("n", "<leader>ec", vim.lsp.buf.declaration, opts)
 
             opts.desc = "Show LSP d[e]finitions"
-            keymap.set("n", "ee", "<cmd>Telescope lsp_definitions<CR>", opts)
+            vim.keymap.set("n", "<leader>ee", "<cmd>Telescope lsp_definitions<CR>", opts)
 
             -- opts.desc = "Show LSP implementations"
-            -- keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+            -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
             -- opts.desc = "Show LSP type definitions"
-            -- keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+            -- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
 
             opts.desc = "See available [c]ode [a]ctions"
-            keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
             opts.desc = "S[m]art [r]ena[m]e"
-            keymap.set("n", "<leader>rm", vim.lsp.buf.rename, opts)
+            vim.keymap.set("n", "<leader>rm", vim.lsp.buf.rename, opts)
 
             -- opts.desc = "Show buffer diagnostics"
             -- keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
@@ -52,7 +54,7 @@ return
             -- keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
             opts.desc = "Show documentation for what is under cursor"
-            keymap.set("n", "K", vim.lsp.buf.hover, opts)
+            keymap.set("n", "<leader>K", vim.lsp.buf.hover, opts)
 
             opts.desc = "Restart LSP"
             keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)

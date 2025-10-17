@@ -38,7 +38,7 @@ require('lazy').setup({
         require 'squa.plugins.lsp.mason',
         require 'squa.plugins.lsp.autoformat',
         require 'squa.plugins.lsp.copilot',
-        -- require 'squa.plugins.lsp.nvim-metals',
+        require 'squa.plugins.lsp.nvim-metals',
         -- colorschemes
         require 'squa.plugins.colorschemes.sonokai',
         require 'squa.plugins.colorschemes.cyberdream',

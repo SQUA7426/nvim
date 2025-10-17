@@ -33,12 +33,12 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under c
 -- end, { expr = true })
 
 vim.keymap.set({ "n", "v" }, '<C-F>', function()
-  vim.ui.input("Enter a pattern: ", function(pattern)
-    if pattern then
-      -- vim.cmd('/\\<' .. pattern .. '\\>')
-        vim.cmd('/' .. pattern)
-    end
-  end)
+    vim.ui.input("Enter a pattern: ", function(pattern)
+        if pattern then
+            -- vim.cmd('/\\<' .. pattern .. '\\>')
+            vim.cmd('/' .. pattern)
+        end
+    end)
 end, { desc = "Find regex" })
 -- Tabnine Enable and Disable
 -- vim.keymap.set('n', '<leader>tn', ':TabnineEnable<CR>', { desc = 'Enable Tabnine' })
@@ -109,20 +109,20 @@ vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 -- Window management
 -- vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })   -- vertical split
 vim.keymap.set('n', '<leader>v', function()
-  vim.cmd.vnew()
-  vim.cmd.wincmd('L')
-  vim.api.nvim_win_set_width(0, 80)
+    vim.cmd.vnew()
+    vim.cmd.wincmd('L')
+    vim.api.nvim_win_set_width(0, 80)
 end, { desc = '[V]ertikal Split' })
 -- vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
 vim.keymap.set('n', '<leader>h', function()
-  vim.cmd('split')
-  vim.cmd.wincmd('J')
-  vim.api.nvim_win_set_height(0, 10)
+    vim.cmd('split')
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 10)
 end, { desc = '[H]orizontal Split' })
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close buffer' })
 
--- Navigation between splits
+-- Navigation betw
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', opts)
 vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
 vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
@@ -145,11 +145,11 @@ vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('v', 'p', '"_dP', opts)
 
 vim.keymap.set('n', '<leader>kk', function()
-  if (vim.o.relativenumber == true) then
-    vim.o.relativenumber = false
-  else
-    vim.o.relativenumber = true
-  end
+    if (vim.o.relativenumber == true) then
+        vim.o.relativenumber = false
+    else
+        vim.o.relativenumber = true
+    end
 end, { desc = "reverse polarity of relativenumbers" })
 -- -- Diagnostic keymaps
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto previous Diagnostic' })
@@ -163,137 +163,144 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
 vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
 vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-t>', function()
-  vim.cmd('split')
-  vim.cmd.term()
-  vim.cmd.wincmd('J')
-  vim.api.nvim_win_set_height(0, 10)
+    vim.cmd('split')
+    vim.cmd('term')
 end, { desc = 'Open terminal' })
 
 vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-  callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  end,
+    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end,
 })
 
 vim.keymap.set('n', '<space>t', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd('L')
-  vim.api.nvim_win_set_width(0, 80)
+    vim.cmd('vs')
+    vim.cmd('term')
 end, { desc = 'Open terminal' })
 
 
 local function compile_and_run_java()
-  -- vim.ui.input('record time? y/n: ', function(accept_time)
-  --   if accept_time == 'y' or accept_time == 'yes' then
-  --     vim.ui.input('Enter package name: ', function(package_name)
-  --       if package_name then
-  --         local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
-  --         local class_name = package_name ..
-  --             '/' ..
-  --             file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
-  --
-  --         vim.cmd('term cd ' ..
-  --           vim.fn.expand('%:p:h') ..
-  --           ' && javac *.java && cd .. && time java ' .. class_name .. ' < /dev/null > /dev/null')
-  --       end
-  --     end)
-  --   else
-      vim.ui.input('Enter package name: ', function(package_name)
+    vim.ui.input('Enter package name: ', function(package_name)
         if package_name then
-          local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
-          local class_name = package_name ..
-              '/' ..
-              file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
-
-          vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+            local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+            local class_name = package_name ..
+                '/' ..
+                file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
+            vim.cmd('vs')
+            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+        else
+            vim.cmd('vs')
+            vim.cmd('term javac ' .. vim.fn.expand('%') .. ' && java ' .. vim.fn.expand('%<'))
         end
-    --   end)
-    -- end
-  end)
+        --   end)
+        -- end
+    end)
 end
 
-
-vim.keymap.set('n', '<C-P>', ':term octave % <CR>', { noremap = true, silent = true })
-
 local function compile_and_Args()
-  vim.ui.input('Enter package name: ', function(package_name)
-    if package_name then
-      vim.ui.input('Enter Arguments: ', function(arguments)
-        if arguments then
-          local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
-          local class_name = package_name ..
-              '/' .. file_name_without_extension                     -- Kombiniere Paketnamen und Dateinamen
-
-          vim.cmd('term cd ' ..
-            vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
+    vim.ui.input('Enter package name: ', function(package_name)
+        if package_name then
+            vim.ui.input('Enter Arguments: ', function(arguments)
+                if arguments then
+                    local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+                    local class_name = package_name ..
+                        '/' .. file_name_without_extension                     -- Kombiniere Paketnamen und Dateinamen
+                    vim.cmd('term cd ' ..
+                        vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name .. ' ' .. arguments)
+                end
+            end)
         end
-      end)
-    end
-  end)
+    end)
 end
 
 
 vim.api.nvim_create_augroup('exe_java', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = 'exe_java',
-  pattern = 'java',
-  callback = function()
-    vim.keymap.set('n', '<C-C>', compile_and_Args, { noremap = true, silent = true })
-    vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
-  end,
+    group = 'exe_java',
+    pattern = 'java',
+    callback = function()
+        vim.keymap.set('n', '<C-C>', compile_and_Args, { noremap = true, silent = true })
+        -- vim.keymap.set('n', '<C-P>', compile_and_run_java, { noremap = true, silent = true })
+    end,
 })
 
-
 local function con_sql()
-  vim.ui.input('Enter an user: ', function(user_name)
-    if user_name then
-      vim.ui.input('Enter database_name: ', function(db_name)
-        if db_name then
-          vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U ' .. user_name .. ' -d ' .. db_name)
+    vim.ui.input('Enter an user: ', function(user_name)
+        if user_name then
+            vim.ui.input('Enter database_name: ', function(db_name)
+                if db_name then
+                    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U ' .. user_name .. ' -d ' .. db_name)
+                end
+            end)
         end
-      end)
-    end
-  end)
+    end)
 end
 
 local function compiling_u_sql()
-  vim.ui.input('Enter an user: ', function(sql_user)
-    if sql_user then
-      vim.cmd('term cd ' ..
-        vim.fn.expand('%:p:h') .. ' && psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
-    end
-  end)
+    vim.ui.input('Enter an user: ', function(sql_user)
+        if sql_user then
+            vim.cmd('term cd ' ..
+                vim.fn.expand('%:p:h') .. ' && psql -U ' .. sql_user .. ' -f ' .. vim.fn.expand('%p'))
+        end
+    end)
 end
 
 local function compiling_sql()
-  vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U timothy -f ' .. vim.fn.expand('%p'))
+    vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U timothy -f ' .. vim.fn.expand('%p'))
 end
 
+local function running_programs()
+    vim.ui.input('Enter FileType: ', function(fType)
+        if (fType == 'sc') then
+            vim.cmd('vs')
+            vim.cmd('term amm < ' .. vim.fn.expand('%:p'))
+        elseif (fType == 'scala') then
+            vim.cmd('vs')
+            vim.cmd('term scalac ' .. vim.fn.expand('%') .. ' && scala ' .. vim.fn.expand('%'))
+        elseif (fType == 'm') then
+            vim.cmd('vs')
+            vim.cmd('term octave ' .. vim.fn.expand('%'))
+        elseif (fType == 'java') then
+            compile_and_run_java()
+        elseif (fType == 'py') then
+            vim.cmd('vs')
+            vim.cmd('term python ' .. vim.fn.expand('%'))
+        elseif (fType == 'sbt') then
+            vim.cmd('split')
+            vim.cmd('term sbt clean update compile run')
+        elseif (fType == 'sbttest') then
+            vim.cmd('split')
+            vim.cmd('term sbt test')
+        end
+    end)
+end
+
+vim.keymap.set('n', '<C-P>', running_programs, { desc = "running scala sc file" })
 
 
 vim.api.nvim_create_augroup('exe_sql', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = 'exe_sql',
-  pattern = 'sql',
-  callback = function()
-    vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
-    vim.keymap.set('n', '<C-C>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
-    vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with timothy user" })
-  end,
+    group = 'exe_sql',
+    pattern = 'sql',
+    callback = function()
+        vim.keymap.set('n', '<C-P>', con_sql, { desc = "Connecting with user to a database" })
+        vim.keymap.set('n', '<C-C>', compiling_u_sql, { desc = "Compiling sql-file with a written user" })
+        vim.keymap.set('n', '<C-B>', compiling_sql, { desc = "Compiling sql-file with timothy user" })
+    end,
 })
 
 vim.api.nvim_create_augroup('exe_valgrind', { clear = false })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = 'exe_valgrind',
-  pattern = {'c', 'cpp'},
-  callback = function()
-    vim.keymap.set('n', '<C-P>', ':term valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./%< ',
-      { desc = "executing and showing valgrind leaks" })
-  end,
+    group = 'exe_valgrind',
+    pattern = { 'c', 'cpp' },
+    callback = function()
+        vim.keymap.set('n', '<C-C>',
+            ':term valgrind --track-origins=yes --leak-check=full --show-leak-kinds=all -s ./%< ',
+            { desc = "executing and showing valgrind leaks" })
+    end,
 })

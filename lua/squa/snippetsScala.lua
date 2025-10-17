@@ -40,7 +40,7 @@ ls.add_snippets("scala", {
             t("import scala.collection.immutable.Set"),
             t("import scala.collection.mutable.Map"),
             t("import scala.collection.immutable.Map"),
-            t("import scala.collection.mutable.Range"),
+            -- t("import scala.collection.mutable.Range"),
             t("import scala.collection.immutable.Range"),
         })
     }
@@ -65,7 +65,8 @@ ls.add_snippets("scala", {
         desc = "import scala io libs"
     }, {
         c(1, {
-            t("import scala.io.Source"),
+        t("import scala.io.Source"),
+        t("import scala.io.StdIn"),
         })
     }
     ),
@@ -114,9 +115,9 @@ ls.add_snippets("scala", {
     }
     ),
     snip({
-        trig = "if...else",
-        name = "if...else",
-        desc = "if...else"
+        trig = "if...else if...else",
+        name = "if...else if...else",
+        desc = "if...else if...else"
     }, {
         t("if("),
         i(1, "condition"),
@@ -132,7 +133,7 @@ ls.add_snippets("scala", {
     }
     ),
     snip({
-        trig = "if...elseif...else",
+        trig = "if...else",
         name = "ifelse",
         desc = "ifelse"
     }, {
@@ -210,6 +211,16 @@ ls.add_snippets("scala", {
         desc = "length"
     }, {
         t("length")
+    }
+    ),
+    snip({
+        trig = "sortWith",
+        name = "sortWith",
+        desc = "sortWith a function"
+    }, {
+        t("sortWith("),
+        i(1, "function"),
+        t(")")
     }
     ),
     snip({
@@ -601,13 +612,29 @@ ls.add_snippets("scala", {
         desc = "Create a Buffer"
     }, {
         c(1, { {
+            t("Buffer("),
+            i(1, "elements"),
+            t(")")
+        }, {
+            t("Buffer["),
+            i(1, "elements"),
+            t("]"),
+        } })
+    }
+    ),
+    snip({
+        trig = "Buffer",
+        name = "Buffer",
+        desc = "Create a Buffer"
+    }, {
+        c(1, { {
             t("val "),
             i(1, "Buffername"),
             t(": Buffer["),
             i(2, "type"),
             t("] = Buffer("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "Buffername"),
@@ -615,18 +642,34 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Buffer("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Buffer("),
             i(1, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Buffer["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         }),
+    }
+    ),
+    snip({
+        trig = "ArrayBuffer",
+        name = "ArrayBuffer",
+        desc = "Create a ArrayBuffer"
+    }, {
+        c(1, { {
+            t("ArrayBuffer("),
+            i(1, "elements"),
+            t(")"),
+        }, {
+            t("ArrayBuffer["),
+            i(1, "elements"),
+            t("]"),
+        } })
     }
     ),
     snip({
@@ -641,7 +684,7 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = ArrayBuffer("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "ArrayBuffername"),
@@ -649,18 +692,34 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = ArrayBuffer("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("ArrayBuffer("),
             i(1, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("ArrayBuffer["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         }),
+    }
+    ),
+    snip({
+        trig = "List",
+        name = "List",
+        desc = "Create a List"
+    }, {
+        c(1, { {
+            t("List("),
+            i(1, "elements"),
+            t(")"),
+        }, {
+            t("List["),
+            i(1, "elements"),
+            t("]"),
+        } })
     }
     ),
     snip({
@@ -675,7 +734,7 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = List("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "Listname"),
@@ -683,17 +742,17 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = List("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("List("),
             i(1, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("List["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("val "),
             i(1, "listname"),
@@ -713,13 +772,29 @@ ls.add_snippets("scala", {
         desc = "Create a Array"
     }, {
         c(1, { {
+            t("Array("),
+            i(1, "elements"),
+            t(")"),
+        }, {
+            t("Array["),
+            i(1, "elements"),
+            t("]"),
+        } })
+    }
+    ),
+    snip({
+        trig = "Array",
+        name = "Array",
+        desc = "Create a Array"
+    }, {
+        c(1, { {
             t("val "),
             i(1, "Arrayname"),
             t(": Array["),
             i(2, "type"),
             t("] = Array("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "Arrayname"),
@@ -727,18 +802,34 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Array("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Array("),
             i(1, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Array["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         }),
+    }
+    ),
+    snip({
+        trig = "Set",
+        name = "Set",
+        desc = "Create a Set"
+    }, {
+        c(1, { {
+            t("Set("),
+            i(1, "elements"),
+            t(")"),
+        }, {
+            t("Set["),
+            i(1, "elements"),
+            t("]"),
+        } })
     }
     ),
     snip({
@@ -753,7 +844,7 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Set("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "Seqname"),
@@ -761,18 +852,36 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Set("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Set("),
             i(1, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("Set["),
             i(2, "type"),
             t("]("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         }),
+    }
+    ),
+    snip({
+        trig = "Seq",
+        name = "Seq",
+        desc = "Create a Seq"
+    }, {
+        c(1, { {
+            t("Seq("),
+            i(1, "elements"),
+            t(")")
+        }, {
+            t("Seq["),
+            i(1, "type"),
+            t("]("),
+            i(2, "elements"),
+            t(")")
+        } })
     }
     ),
     snip({
@@ -787,7 +896,7 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Seq("),
             i(3, "elements"),
-            t(")") }
+            t(")"), }
         , {
             t("var "),
             i(1, "Seqname"),
@@ -795,17 +904,7 @@ ls.add_snippets("scala", {
             i(2, "type"),
             t("] = Seq("),
             i(3, "elements"),
-            t(")") }
-        , {
-            t("Seq("),
-            i(1, "elements"),
-            t(")") }
-        , {
-            t("Seq["),
-            i(2, "type"),
-            t("]("),
-            i(3, "elements"),
-            t(")") }
+            t(")"), }
         }),
     }
     ),
@@ -824,5 +923,68 @@ ls.add_snippets("scala", {
         desc = "closes an opened File"
     }, {
         t("close")
-    })
+    }),
+    snip({
+        trig = "readLine",
+        name = "readLine",
+        desc = "reads the given line"
+    }, {
+        t("scala.io.StdIn.readLine("),
+        i(1, "line"),
+        t(")")
+    }),
+    snip({
+        trig = "readInt",
+        name = "readInt",
+        desc = "reads the given Int"
+    }, {
+        t("scala.io.StdIn.readInt("),
+        i(1, "Int"),
+        t(")")
+    }),
+    snip({
+        trig = "readDouble",
+        name = "readDouble",
+        desc = "reads the given Double"
+    }, {
+        t("scala.io.StdIn.readDouble("),
+        i(1, "Double"),
+        t(")")
+    }),
+    snip({
+        trig = "readFloat",
+        name = "readFloat",
+        desc = "reads the given Float"
+    }, {
+        t("scala.io.StdIn.readFloat("),
+        i(1, "Float"),
+        t(")")
+    }),
+    snip({
+        trig = "readByte",
+        name = "readByte",
+        desc = "reads the given Byte"
+    }, {
+        t("scala.io.StdIn.readByte("),
+        i(1, "Byte"),
+        t(")")
+    }),
+    snip({
+        trig = "readBoolean",
+        name = "readBoolean",
+        desc = "reads the given Boolean"
+    }, {
+        t("scala.io.StdIn.readBoolean("),
+        i(1, "Boolean"),
+        t(")")
+    }),
+    snip({
+        trig = "readChar",
+        name = "readChar",
+        desc = "reads the given Char"
+    }, {
+        t("scala.io.StdIn.readChar("),
+        i(1, "Char"),
+        t(")")
+    }),
 })

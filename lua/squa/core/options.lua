@@ -1,7 +1,7 @@
 vim.wo.number = true
 vim.o.relativenumber = true
 vim.o.clipboard = 'unnamedplus'
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.mouse = 'a'
 vim.o.autoindent = true
