@@ -5,7 +5,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set({ 'n', 'v' }, '<C-P>', '<Nop>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<C-D>', '<Nop>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, 'n', '<Nop>', { silent = true })
+-- vim.keymap.set({ 'n', 'v' }, 'n', '<Nop>', { silent = true })
 
 local opts = { noremap = true, silent = true }
 
@@ -20,29 +20,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jc', 'zc', { desc = "[c]lose folding under
 vim.keymap.set({ 'n', 'v' }, '<leader>jC', 'zM', { desc = "[C]lose all foldings" })
 vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under cursor" })
 
-
---- Example integration with Tabnine and LuaSnip; falling back to inserting tab if neither has a completion
--- vim.keymap.set("i", "<tab>", function()
---     if require("tabnine.keymaps").has_suggestion() then
---         return require("tabnine.keymaps").accept_suggestion()
---     elseif require("luasnip").jumpable(1) then
---         return require("luasnip").jump(1)
---     else
---         return "<tab>"
---     end
--- end, { expr = true })
-
-vim.keymap.set({ "n", "v" }, '<C-F>', function()
-    vim.ui.input("Enter a pattern: ", function(pattern)
-        if pattern then
-            -- vim.cmd('/\\<' .. pattern .. '\\>')
-            vim.cmd('/' .. pattern)
-        end
-    end)
-end, { desc = "Find regex" })
--- Tabnine Enable and Disable
--- vim.keymap.set('n', '<leader>tn', ':TabnineEnable<CR>', { desc = 'Enable Tabnine' })
--- vim.keymap.set('n', '<leader>td', ':TabnineDisable<CR>', { desc = 'Disable Tabnine' })
+vim.keymap.set({ "n", "v" }, '<C-F>','?', { desc = 'Search' })
 
 -- Copilot Enable and Disable
 vim.keymap.set('n', '<leader>cn', ':Copilot enable<CR>', { desc = 'Enable Copilot' })
@@ -56,7 +34,7 @@ vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 vim.keymap.set('n', 'x', '"_x', opts)
 
 -- find the center
-vim.keymap.set('n', 'N', '50%<CR>', opts)
+vim.keymap.set('n', '<leader>l', '50%<CR>', opts)
 -- vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- showkeysToggle
@@ -135,7 +113,7 @@ vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 -- vim.keymap.set('n', '<leader>tp', ':tabp<CR>', opts)
 
 -- Toggle line wrapping
-vim.keymap.set('n', '<leader>lw', '<cmd> set wrap!<CR>', opts)
+-- vim.keymap.set('n', '<leader>lw', '<cmd> set wrap!<CR>', opts)
 
 -- Stay in indent mode
 vim.keymap.set('v', '<', '<gv', opts)
@@ -270,7 +248,7 @@ local function running_programs()
             vim.cmd('term python ' .. vim.fn.expand('%'))
         elseif (fType == 'sbt') then
             vim.cmd('split')
-            vim.cmd('term sbt clean update compile run')
+            vim.cmd('term sbt run')
         elseif (fType == 'sbttest') then
             vim.cmd('split')
             vim.cmd('term sbt test')
