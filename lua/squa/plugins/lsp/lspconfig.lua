@@ -7,60 +7,8 @@ return
         { "antosha417/nvim-lsp-file-operations", config = true },
     },
     config = function()
-        local lspconfig = require("lspconfig")
-
-        local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-        local keymap = vim.keymap
-
-        local opts = { noremap = true, silent = true }
-
-        local on_attach = function(client, bufnr)
-            opts.buffer = bufnr
-
-            vim.g.mapleader = ' '      -- set the mapleader to Space
-            vim.g.maplocalleader = ' ' -- the same as mapleader
-            opts.desc = "[S]how L[S]P references"
-            vim.keymap.set("n", "<leader>gss", "<cmd>Telescope lsp_references<CR>", opts)
-
-            opts.desc = "Go to d[ec]laration"
-            vim.keymap.set("n", "<leader>ec", vim.lsp.buf.declaration, opts)
-
-            opts.desc = "Show LSP d[e]finitions"
-            vim.keymap.set("n", "<leader>ee", "<cmd>Telescope lsp_definitions<CR>", opts)
-
-            -- opts.desc = "Show LSP implementations"
-            -- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
-
-            -- opts.desc = "Show LSP type definitions"
-            -- vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-
-            opts.desc = "See available [c]ode [a]ctions"
-            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-            opts.desc = "S[m]art [r]ena[m]e"
-            vim.keymap.set("n", "<leader>rm", vim.lsp.buf.rename, opts)
-
-            -- opts.desc = "Show buffer diagnostics"
-            -- keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-            -- opts.desc = "Show line diagnostics"
-            -- keymap.set("n", "<leader>d", vim.diagnostic.open.float, opts)
-
-            -- opts.desc = "Goto previous diagnostic"
-            -- keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-            -- opts.desc = "Goto next diagnostic"
-            -- keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-            opts.desc = "Show documentation for what is under cursor"
-            keymap.set("n", "<leader>K", vim.lsp.buf.hover, opts)
-
-            opts.desc = "Restart LSP"
-            keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
-        end
-
-        local capabilities = cmp_nvim_lsp.default_capabilities()
+        -- local capabilities = cmp_nvim_lsp.default_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
 
         local signs = { Error = "⚔ ", Warn = "⚠ ", Hint = "⨁ ", Info = "ℹ " }
         for type, icon in pairs(signs) do
@@ -69,53 +17,89 @@ return
         end
 
         -- configure html server
-        lspconfig["html"].setup({
+        -- lspconfig["html"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("html")
+        vim.lsp.config("html", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         -- configure typescript server
-        lspconfig["matlab_ls"].setup({
+        -- lspconfig["matlab_ls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("matlab_ls")
+        vim.lsp.config("matlab_ls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         -- configure css server
-        lspconfig["cssls"].setup({
+        -- lspconfig["cssls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("cssls")
+        vim.lsp.config("cssls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
-        lspconfig["sqls"].setup({
+        -- lspconfig["sqls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("sqls")
+        vim.lsp.config("sqls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
-        lspconfig["sqlls"].setup({
+        -- lspconfig["sqlls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("sqlls")
+        vim.lsp.config("sqlls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         -- configure tailwindcss server
-        lspconfig["tailwindcss"].setup({
+        -- lspconfig["tailwindcss"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("tailwindcss")
+        vim.lsp.config("tailwindcss", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
         -- configure json server
-        lspconfig["jsonls"].setup({
+        -- lspconfig["jsonls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("jsonls")
+        vim.lsp.config("jsonls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
         -- configure bash server
-        lspconfig["bashls"].setup({
+        -- lspconfig["bashls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("bashls")
+        vim.lsp.config("bashls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         -- configure arduino-language-server
-        lspconfig["arduino_language_server"].setup({
+        -- lspconfig["arduino_language_server"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("arduino_language_server")
+        vim.lsp.config("arduino_language_server", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
         -- configure pkgbuild server
         -- lspconfig["pkgbuild_language_server"].setup({
@@ -130,16 +114,25 @@ return
         -- })
 
         -- configure emmet server
-        lspconfig["emmet_ls"].setup({
+        -- lspconfig["emmet_ls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        --     filetypes = { "html", "css", "sass", "scss", "less", "svelte" },
+        -- })
+        vim.lsp.enable("emmet_ls")
+        vim.lsp.config("emmet_ls", {
             capabilities = capabilities,
-            on_attach = on_attach,
             filetypes = { "html", "css", "sass", "scss", "less", "svelte" },
         })
 
         -- configure pyright server
-        lspconfig["pyright"].setup({
+        -- lspconfig["pyright"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("pyright")
+        vim.lsp.config("pyright", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
         -- lspconfig["asm_lsp"].setup({
@@ -147,29 +140,42 @@ return
         --     on_attach = on_attach,
         -- })
 
-        lspconfig["graphql"].setup({
+        -- lspconfig["graphql"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+
+        vim.lsp.enable("graphql")
+        vim.lsp.config("graphql", {
             capabilities = capabilities,
-            on_attach = on_attach,
+        })
+        -- lspconfig["rust_analyzer"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+
+        vim.lsp.enable("rust_analyzer")
+        vim.lsp.config("rust_analyzer", {
+            capabilities = capabilities,
+        })
+        -- lspconfig["cmake"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("cmake")
+        vim.lsp.config("cmake", {
+            capabilities = capabilities,
         })
 
-        lspconfig["rust_analyzer"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
+        -- lspconfig["clangd"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
 
-        lspconfig["cmake"].setup({
+        -- require 'lspconfig'.clangd.setup({
+        vim.lsp.config("clangd", {
             capabilities = capabilities,
-            on_attach = on_attach,
-        })
-
-        lspconfig["clangd"].setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-        })
-
-        require 'lspconfig'.clangd.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
+            -- on_attach = on_attach,
             handlers = {
                 ["window/showMessage"] = function(err, method, params, client_id)
                     print(vim.inspect(params))
@@ -177,16 +183,26 @@ return
             },
         })
 
-        lspconfig["jdtls"].setup({
+        -- lspconfig["jdtls"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("jdtls")
+        vim.lsp.config("jdtls", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
 
-        lspconfig["texlab"].setup({
+        -- lspconfig["texlab"].setup({
+        --     capabilities = capabilities,
+        --     on_attach = on_attach,
+        -- })
+        vim.lsp.enable("texlab")
+        vim.lsp.config("texlab", {
             capabilities = capabilities,
-            on_attach = on_attach,
         })
-        require 'lspconfig'.lua_ls.setup {
+        -- require 'lspconfig'.lua_ls.setup {
+        vim.lsp.enable("lua_ls")
+        vim.lsp.config("lua_ls", {
             on_init = function(client)
                 if client.workspace_folders then
                     local path = client.workspace_folders[1].name
@@ -219,5 +235,6 @@ return
                 Lua = {}
             }
         }
+        )
     end,
 }

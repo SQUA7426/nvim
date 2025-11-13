@@ -3,38 +3,36 @@ augroup exe_code
 
     " compile and run code in terminal
     autocmd FileType python nnoremap <C-P>
-                \ :term python3 % <CR> a
+                \ :term kitty --hold python3 % <CR>
 
     autocmd FileType c nnoremap <C-P>
-                \ :term gcc % -o %< && ./%< <CR> a
+                \ :term gcc % -o %< && kitty --hold ./%< <CR>
 
     autocmd FileType cpp nnoremap <C-P>
-                \ :term g++ % -o %< && ./%< <CR> a
+                \ :term g++ % -o %< && kitty --hold ./%< <CR>
 
     autocmd FileType javascript nnoremap <C-P>
-                \ :term nodejs %<CR> :startinsert<CR> a
+                \ :term kitty --hold nodejs %<CR> :startinsert<CR>
 
-    "autocmd FileType java nnoremap <C-P>
-    "            \ :term javac % && java %< <CR> a
+    autocmd FileType html nnoremap <C-P>
+                \ :term firefox % <CR>
 
-    "autocmd FileType scala nnoremap <C-P>
-    "            \ :term scalac % && scala % <CR> a
-    
-    autocmd FileType sc nnoremap <C-P>
-                \ :term amm %:p <CR> a
+    autocmd FileType lua nnoremap <C-P>
+                \ :term lua % <CR>
 
     "autocmd FileType rust nnoremap <C-P>
     "            \ :term rustc % && ./%< <CR> a
-
+    autocmd FileType tex nnoremap <C-P>
+                \ :term cd %:p:h && pdflatex % && evince %<.pdf <CR>
     " compile and using arguments before executing in terminal
     autocmd FileType python nnoremap <C-B>
                 \ :term cd %:p:h && python3 % 
 
     autocmd FileType c nnoremap <C-B>
-                \ :term cd %:p:h && gcc % -o %< && ./%<  <CR> a
+                \ :term kitty cd %:p:h && gcc % -o %< && --hold ./%< 
 
     autocmd FileType cpp nnoremap <C-B>
-                \ :term cd %:p:h && g++ % -o %< && ./%< <CR> a
+                \ :term cd %:p:h && g++ % -o %< && kitty --hold ./%< 
 
     autocmd FileType javascript nnoremap <C-B>
                 \ :term cd %:p:h && nodejs % 
@@ -44,10 +42,4 @@ augroup exe_code
     
     autocmd FileType rust nnoremap <C-B>
                 \ :term cd %:p:h && rustc % && ./%< 
-
-    autocmd FileType html nnoremap <C-B>
-                \ :term firefox % <CR>
-
-    autocmd FileType lua nnoremap <C-B>
-                \ :term lua % <CR>
 augroup END

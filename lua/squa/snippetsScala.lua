@@ -1,4 +1,4 @@
-local ls = require "luasnip"
+local ls = require("luasnip")
 
 local snip = ls.snippet
 local n = ls.node

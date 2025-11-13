@@ -1,4 +1,6 @@
 require('squa.core.keymaps')
 require('squa.core.options')
 require('squa.lazy')
+require('luasnip')
 require('squa.snippetsScala')
+-- require('squa.snippetsLatex')

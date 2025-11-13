@@ -56,6 +56,7 @@ require('lazy').setup({
         require 'squa.plugins.telescope',
         require 'squa.plugins.treesitter',
         require 'squa.plugins.vim-dadbod',
+        require 'squa.plugins.vimtex',
         require 'squa.plugins.whichkey',
         require 'squa.plugins.noicenvim'
     }

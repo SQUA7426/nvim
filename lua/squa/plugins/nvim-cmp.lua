@@ -29,22 +29,20 @@ return
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ["<Tab>"] = cmp.mapping(function(fallback)
+                ["<Tab>"] = function(fallback)
                     if luasnip.jumpable(1) then
                         luasnip.jump(1)
                     else
                         fallback()
                     end
-                end, { "i", "s" }),
-
-                -- Jump backward in snippet
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
+                end,
+                ["<S-Tab>"] = function(fallback)
                     if luasnip.jumpable(-1) then
                         luasnip.jump(-1)
                     else
                         fallback()
                     end
-                end, { "i", "s" }),
+                end,
                 ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
                 ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
                 -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),

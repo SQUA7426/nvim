@@ -34,7 +34,7 @@ vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 vim.keymap.set('n', 'x', '"_x', opts)
 
 -- find the center
-vim.keymap.set('n', '<leader>l', '50%<CR>', opts)
+vim.keymap.set({'n', 'v'}, '<leader>m', '50%<CR>', opts)
 -- vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- showkeysToggle
@@ -87,15 +87,15 @@ vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 -- Window management
 -- vim.keymap.set('n', '<leader>v', '<C-w>v', { desc = "[V]ertical Split" })   -- vertical split
 vim.keymap.set('n', '<leader>v', function()
-    vim.cmd.vnew()
+    vim.cmd('vs')
     vim.cmd.wincmd('L')
-    vim.api.nvim_win_set_width(0, 80)
+    vim.api.nvim_win_set_width(0,100)
 end, { desc = '[V]ertikal Split' })
 -- vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
 vim.keymap.set('n', '<leader>h', function()
     vim.cmd('split')
     vim.cmd.wincmd('J')
-    vim.api.nvim_win_set_height(0, 10)
+    vim.api.nvim_win_set_height(0, 20)
 end, { desc = '[H]orizontal Split' })
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', { desc = 'Delete buffer' })
 vim.keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'Close buffer' })
@@ -162,18 +162,15 @@ end, { desc = 'Open terminal' })
 local function compile_and_run_java()
     vim.ui.input('Enter package name: ', function(package_name)
         if package_name then
-            local file_name_without_extension = vim.fn.expand('%:t:r') -- Dateiname ohne Erweiterung
+            local file_name_without_extension = vim.fn.expand('%:t:r')
             local class_name = package_name ..
                 '/' ..
-                file_name_without_extension -- Kombiniere Paketnamen und Dateinamen
-            vim.cmd('vs')
-            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && java ' .. class_name)
+                file_name_without_extension
+            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && kitty --hold java ' .. class_name)
         else
-            vim.cmd('vs')
-            vim.cmd('term javac ' .. vim.fn.expand('%') .. ' && java ' .. vim.fn.expand('%<'))
+            -- vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac ' .. vim.fn.expand('%'))
+            vim.cmd('term cd '.. vim.fn.expand('%:p:h') ..' && javac *.java && kitty --hold java ' .. vim.fn.expand('%:t:r'))
         end
-        --   end)
-        -- end
     end)
 end
 
@@ -229,35 +226,33 @@ end
 local function compiling_sql()
     vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U timothy -f ' .. vim.fn.expand('%p'))
 end
-
+vim.api.nvim_create_user_command("RunAmm", function()
+  local file = vim.fn.expand("%:p")
+  vim.fn.jobstart({ "kitty", "--hold", "bash", "-c", "amm < " .. file }, { detach = true })
+end, {})
 local function running_programs()
     vim.ui.input('Enter FileType: ', function(fType)
         if (fType == 'sc') then
-            vim.cmd('vs')
-            vim.cmd('term amm < ' .. vim.fn.expand('%:p'))
-        elseif (fType == 'scala') then
-            vim.cmd('vs')
-            vim.cmd('term scalac ' .. vim.fn.expand('%') .. ' && scala ' .. vim.fn.expand('%'))
+            vim.cmd('RunAmm')
+        elseif(fType == 'scala') then
+            vim.cmd('term scalac ' .. vim.fn.expand('%') .. ' && kitty --hold scala ' .. vim.fn.expand('%'))
         elseif (fType == 'm') then
-            vim.cmd('vs')
-            vim.cmd('term octave ' .. vim.fn.expand('%'))
+            vim.cmd('term kitty --hold octave ' .. vim.fn.expand('%'))
         elseif (fType == 'java') then
             compile_and_run_java()
         elseif (fType == 'py') then
-            vim.cmd('vs')
-            vim.cmd('term python ' .. vim.fn.expand('%'))
+            vim.cmd('term kitty --hold python ' .. vim.fn.expand('%'))
         elseif (fType == 'sbt') then
-            vim.cmd('split')
-            vim.cmd('term sbt run')
+            vim.cmd('term kitty --hold sbt run')
         elseif (fType == 'sbttest') then
-            vim.cmd('split')
-            vim.cmd('term sbt test')
+            vim.cmd('term kitty --hold sbt test')
+        elseif (fType == 'sbtcoverage') then
+            vim.cmd('term kitty --hold sbt clean coverage test coverageReport')
         end
     end)
 end
 
-vim.keymap.set('n', '<C-P>', running_programs, { desc = "running scala sc file" })
-
+vim.keymap.set('n', '<C-P>', running_programs, { desc = "running program types" })
 
 vim.api.nvim_create_augroup('exe_sql', { clear = false })
 

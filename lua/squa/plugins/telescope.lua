@@ -52,8 +52,8 @@ return
             defaults = {
                 mappings = {
                     i = {
-                        ['<C-k>'] = require('telescope.actions').move_selection_previous,
-                        ['<C-j>'] = require('telescope.actions').move_selection_next,
+                        ['<S-Tab>'] = require('telescope.actions').move_selection_previous,
+                        ['<Tab>'] = require('telescope.actions').move_selection_next,
                         ['<C-l>'] = require('telescope.actions').select_default,
                     },
                 },
