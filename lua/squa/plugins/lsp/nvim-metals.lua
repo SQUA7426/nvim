@@ -10,7 +10,7 @@ return
             vim.g.maplocalleader = ' ' -- the same as mapleader
             local keymap = vim.keymap
             local opts = { noremap = true, silent = true }
-           opts.desc = "[S]how L[S]P references"
+            opts.desc = "[S]how L[S]P references"
             vim.keymap.set("n", "<leader>gss", "<cmd>Telescope lsp_references<CR>", opts)
 
             opts.desc = "Go to d[ec]laration"
@@ -44,7 +44,7 @@ return
             -- keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
             opts.desc = "Show documentation for what is under cursor"
-            keymap.set("n", "<leader>K", vim.lsp.buf.hover, opts)
+            -- keymap.set("n", "<leader>K", vim.lsp.buf.hover, opts)
 
             opts.desc = "Restart LSP"
             keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)

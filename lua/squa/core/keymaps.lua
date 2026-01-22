@@ -20,21 +20,21 @@ vim.keymap.set({ 'n', 'v' }, '<leader>jc', 'zc', { desc = "[c]lose folding under
 vim.keymap.set({ 'n', 'v' }, '<leader>jC', 'zM', { desc = "[C]lose all foldings" })
 vim.keymap.set({ 'n', 'v' }, '<leader>jd', 'zd', { desc = "[d]elete fold under cursor" })
 
-vim.keymap.set({ "n", "v" }, '<C-F>','?', { desc = 'Search' })
+vim.keymap.set({ "n", "v" }, '<C-F>', '?', { desc = 'Search' })
 
 -- Copilot Enable and Disable
 vim.keymap.set('n', '<leader>cn', ':Copilot enable<CR>', { desc = 'Enable Copilot' })
 vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Disable Copilot' })
 -- save file
-vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
+-- vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
-vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+-- vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
 -- delete a single char w/o copying into register
 vim.keymap.set('n', 'x', '"_x', opts)
 
 -- find the center
-vim.keymap.set({'n', 'v'}, '<leader>m', '50%<CR>', opts)
+vim.keymap.set({ 'n', 'v' }, '<leader>m', '50%<CR>', opts)
 -- vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- showkeysToggle
@@ -46,9 +46,9 @@ opts.desc = 'disable CR'
 vim.api.nvim_set_keymap('n', '<CR>', '<Nop>', opts)
 vim.api.nvim_set_keymap('v', '<CR>', '<Nop>', opts)
 
-opts.desc = 'Jump to last char/letter'
-vim.api.nvim_set_keymap('n', 'E', '$', opts)
-vim.api.nvim_set_keymap('v', 'E', '$', opts)
+-- opts.desc = 'Jump to last char/letter'
+-- vim.api.nvim_set_keymap('n', 'E', '$', opts)
+-- vim.api.nvim_set_keymap('v', 'E', '$', opts)
 
 vim.cmd("source ~/.config/nvim/lua/squa/plugins/exec.vim")
 
@@ -89,7 +89,7 @@ vim.keymap.set('n', '<leader>b', ':<cmd> enew <CR>', { desc = 'new buffer' })
 vim.keymap.set('n', '<leader>v', function()
     vim.cmd('vs')
     vim.cmd.wincmd('L')
-    vim.api.nvim_win_set_width(0,100)
+    vim.api.nvim_win_set_width(0, 100)
 end, { desc = '[V]ertikal Split' })
 -- vim.keymap.set('n', '<leader>h', '<C-w>s', { desc = "[H]orizontal Split" }) -- horizontal split
 vim.keymap.set('n', '<leader>h', function()
@@ -166,10 +166,12 @@ local function compile_and_run_java()
             local class_name = package_name ..
                 '/' ..
                 file_name_without_extension
-            vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && kitty --hold java ' .. class_name)
+            vim.cmd('term cd ' ..
+            vim.fn.expand('%:p:h') .. ' && javac *.java && cd .. && kitty --hold java ' .. class_name)
         else
             -- vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && javac ' .. vim.fn.expand('%'))
-            vim.cmd('term cd '.. vim.fn.expand('%:p:h') ..' && javac *.java && kitty --hold java ' .. vim.fn.expand('%:t:r'))
+            vim.cmd('term cd ' ..
+            vim.fn.expand('%:p:h') .. ' && javac *.java && kitty --hold java ' .. vim.fn.expand('%:t:r'))
         end
     end)
 end
@@ -223,18 +225,21 @@ local function compiling_u_sql()
     end)
 end
 
+local function exec_ipynb()
+    vim.cmd('term jupyter-notebook ' .. vim.fn.expand('%'))
+end
 local function compiling_sql()
     vim.cmd('term cd ' .. vim.fn.expand('%:p:h') .. ' && psql -U timothy -f ' .. vim.fn.expand('%p'))
 end
 vim.api.nvim_create_user_command("RunAmm", function()
-  local file = vim.fn.expand("%:p")
-  vim.fn.jobstart({ "kitty", "--hold", "bash", "-c", "amm < " .. file }, { detach = true })
+    local file = vim.fn.expand("%:p")
+    vim.fn.jobstart({ "kitty", "--hold", "bash", "-c", "amm < " .. file }, { detach = true })
 end, {})
 local function running_programs()
     vim.ui.input('Enter FileType: ', function(fType)
         if (fType == 'sc') then
             vim.cmd('RunAmm')
-        elseif(fType == 'scala') then
+        elseif (fType == 'scala') then
             vim.cmd('term scalac ' .. vim.fn.expand('%') .. ' && kitty --hold scala ' .. vim.fn.expand('%'))
         elseif (fType == 'm') then
             vim.cmd('term kitty --hold octave ' .. vim.fn.expand('%'))
@@ -248,11 +253,14 @@ local function running_programs()
             vim.cmd('term kitty --hold sbt test')
         elseif (fType == 'sbtcoverage') then
             vim.cmd('term kitty --hold sbt clean coverage test coverageReport')
+        elseif (fType == 'ipynb') then
+            exec_ipynb()
         end
     end)
 end
 
 vim.keymap.set('n', '<C-P>', running_programs, { desc = "running program types" })
+
 
 vim.api.nvim_create_augroup('exe_sql', { clear = false })
 
@@ -277,3 +285,7 @@ vim.api.nvim_create_autocmd('FileType', {
             { desc = "executing and showing valgrind leaks" })
     end,
 })
+
+-- ##########################################################################
+
+

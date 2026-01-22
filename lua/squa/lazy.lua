@@ -24,6 +24,8 @@ require('lazy').setup({
             -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
         }
     },
+    -- { 'neoclide/coc.nvim',     branch = 'master',                          run = 'yarn install --frozen-lockfile' },
+    { 'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async' },
     {
         "mg979/vim-visual-multi",
     },
@@ -71,49 +73,56 @@ require('tabnine').setup({
     exclude_filetypes = { "TelescopePrompt", "NvimTree" },
     log_file_path = nil, -- absolute path to Tabnine log file
     ignore_certificate_errors = false,
-    -- workspace_folders = {
-    --   paths = { "/your/project" },
-    --   get_paths = function()
-    --       return { "/your/project" }
-    --   end,
-    -- },
 })
 
 require("noice").setup({
     lsp = {
-        -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
             ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+            ["cmp.entry.get_documentation"] = true,
         },
     },
-    -- you can enable a preset for easier configuration
     presets = {
-        bottom_search = true,     -- use a classic bottom cmdline for search
-        command_palette = true,   -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = false,       -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false,   -- add a border to hover docs and signature help
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
     },
     messages = {
         enabled = false,
         view = "popup",
     },
     errors = {
-        -- options for the message history that you get with `:Noice`
         view = "popup",
         opts = { enter = true, format = "details" },
         filter = { error = true },
         filter_opts = { reverse = true },
     },
     notify = {
-        -- Noice can be used as `vim.notify` so you can route any notification like other messages
-        -- Notification messages have their level and other properties set.
-        -- event is always "notify" and kind can be any log level as a string
-        -- The default routes will forward notifications to nvim-notify
-        -- Benefit of using Noice for this is the routing and consistent history view
         enabled = false,
         view = "cmdline",
     },
+})
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+local language_servers = vim.lsp.get_clients()
+for _, ls in ipairs(language_servers) do
+    require('lspconfig')[ls].setup({
+        capabilities = capabilities
+    })
+end
+require('ufo').setup()
+--
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+require('ufo').setup({
+    provider_selector = function(bufnr, filetype, buftype)
+        return { 'treesitter', 'indent' }
+    end
 })
