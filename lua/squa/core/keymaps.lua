@@ -138,8 +138,8 @@ end, { desc = "reverse polarity of relativenumbers" })
 -- vim.api.nvim_set_hl(0, 'Visual', { fg = "#E06C75" })
 -- Terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', opts)
-vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
-vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
+-- vim.keymap.set('t', '<C-e>', '<cmd> q <CR> :bnext<CR> :Bdelete!<CR>', opts)
+-- vim.keymap.set('t', '<C-q>', '<C-\\><C-n> :wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-t>', function()
     vim.cmd('split')
     vim.cmd('term')
@@ -153,10 +153,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
     end,
 })
 
-vim.keymap.set('n', '<space>t', function()
-    vim.cmd('vs')
-    vim.cmd('term')
-end, { desc = 'Open terminal' })
+-- vim.keymap.set('n', '<space>t', function()
+--     vim.cmd('vs')
+--     vim.cmd('term')
+-- end, { desc = 'Open terminal' })
 
 
 local function compile_and_run_java()
