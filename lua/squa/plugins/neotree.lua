@@ -133,7 +133,7 @@ return {
             commands = {},
             window = {
                 position = 'left',
-                width = 40,
+                width = 25,
                 mapping_options = {
                     noremap = true,
                     nowait = true,
@@ -313,6 +313,6 @@ return {
                 },
             },
         }
-        vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
+        -- vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
     end
 }

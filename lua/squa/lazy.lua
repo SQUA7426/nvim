@@ -39,6 +39,7 @@ require('lazy').setup({
     require 'squa.plugins.colorschemes.cyberdream',
     require 'squa.plugins.colorschemes.solarized',
     -- not lsp
+    require 'squa.plugins.PDFview',
     require 'squa.plugins.autopairs',
     require 'squa.plugins.bufferline',
     require 'squa.plugins.comrade',
@@ -50,7 +51,6 @@ require('lazy').setup({
     require 'squa.plugins.neotree',
     require 'squa.plugins.noicenvim',
     require 'squa.plugins.nvim-cmp',
-    require 'squa.plugins.PDFview',
     require 'squa.plugins.showkeys',
     require 'squa.plugins.telescope',
     require 'squa.plugins.treesitter',
