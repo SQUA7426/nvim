@@ -255,6 +255,10 @@ local function running_programs()
             vim.cmd('term kitty --hold sbt clean coverage test coverageReport')
         elseif (fType == 'ipynb') then
             exec_ipynb()
+        elseif (fType == 'rustb') then
+            vim.cmd('term cargo build && cargo run')
+        elseif (fType == 'rust') then
+            vim.cmd('term cargo run')
         end
     end)
 end

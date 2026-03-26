@@ -14,7 +14,7 @@ require('lazy').setup({
     branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",       -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
     }
@@ -24,8 +24,8 @@ require('lazy').setup({
     "mg979/vim-visual-multi",
   },
   {
-    "codota/tabnine-nvim",
-    build = "./dl_binaries.sh"
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
   },
   {
     -- lsp
@@ -39,12 +39,11 @@ require('lazy').setup({
     require 'squa.plugins.colorschemes.cyberdream',
     require 'squa.plugins.colorschemes.solarized',
     -- not lsp
-    require 'squa.plugins.PDFview',
+    require 'squa.plugins.arduino',
     require 'squa.plugins.autopairs',
     require 'squa.plugins.bufferline',
     require 'squa.plugins.comrade',
     require 'squa.plugins.cord',
-    require 'squa.plugins.dressing',
     require 'squa.plugins.flash',
     require 'squa.plugins.fterm',
     require 'squa.plugins.lualine',
@@ -58,55 +57,6 @@ require('lazy').setup({
     require 'squa.plugins.vimtex',
     require 'squa.plugins.whichkey'
   }
-})
-
-require('tabnine').setup({
-  disable_auto_comment = true,
-  accept_keymap = "<Tab>",
-  dismiss_keymap = "<C-]>",
-  debounce_ms = 800,
-  suggestion_color = { gui = "#808080", cterm = 244 },
-  exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-  log_file_path = nil,   -- absolute path to Tabnine log file
-  ignore_certificate_errors = false,
-})
-
-require("noice").setup({
-  lsp = {
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  presets = {
-    bottom_search = true,
-    command_palette = true,
-    long_message_to_split = true,
-    inc_rename = false,
-    lsp_doc_border = false,
-  },
-  messages = {
-    enabled = false,
-    view = "popup",
-  },
-  errors = {
-    view = "popup",
-    opts = { enter = true, format = "details" },
-    filter = { error = true },
-    filter_opts = { reverse = true },
-  },
-  notify = {
-    enabled = false,
-    view = "cmdline",
-  },
-})
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*.pdf",
-  callback = function()
-    local file_path = vim.api.nvim_buf_get_name(0)
-    require("pdfview").open(file_path)
-  end,
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
