@@ -39,6 +39,7 @@ require('lazy').setup({
     require 'squa.plugins.colorschemes.cyberdream',
     require 'squa.plugins.colorschemes.solarized',
     -- not lsp
+    require 'squa.plugins.aerial',
     require 'squa.plugins.arduino',
     require 'squa.plugins.autopairs',
     require 'squa.plugins.bufferline',
