@@ -1,16 +1,4 @@
 This is SQUA's nvim configuration.
-
-```
-sudo apt-get install \
-    install imagemagick \
-    sudo apt install \
-    liblua5.1-0-dev \
-    fd \
-    poppler-utils \
-    zathura \
-    zathura-pdf-poppler
-```
-
 ```
 sudo pacman -S --needed \
     gtk3 \
@@ -19,13 +7,9 @@ sudo pacman -S --needed \
     libsoup3 \
     imagemagick \
     lua \
-    lualib
-    poppler \
+    liblua \
     npm \
     fd \
-    zathura \
-    zathura-pdf-poppler \
-    luarocks \
-    luarocks install image.nvim
+    luarocks
+luarocks install magick
 ```
-
