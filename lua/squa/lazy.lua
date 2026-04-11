@@ -24,6 +24,9 @@ require('lazy').setup({
     "mg979/vim-visual-multi",
   },
   {
+    "beeender/ComradeNeovim",
+  },
+  {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
   },
