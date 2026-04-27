@@ -46,7 +46,6 @@ require('lazy').setup({
     require 'squa.plugins.arduino',
     require 'squa.plugins.autopairs',
     require 'squa.plugins.bufferline',
-    require 'squa.plugins.comrade',
     require 'squa.plugins.cord',
     require 'squa.plugins.flash',
     require 'squa.plugins.fterm',
