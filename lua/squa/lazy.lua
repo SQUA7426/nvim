@@ -52,6 +52,7 @@ require('lazy').setup({
     require 'squa.plugins.noicenvim',
     require 'squa.plugins.nvim-cmp',
     require 'squa.plugins.showkeys',
+    require 'squa.plugins.smear-cursor',
     require 'squa.plugins.telescope',
     require 'squa.plugins.treesitter',
     require 'squa.plugins.vim-dadbod',

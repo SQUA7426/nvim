@@ -57,6 +57,9 @@ vim.cmd("source ~/.config/nvim/lua/squa/plugins/exec.vim")
 vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Shift' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Shift' })
 
+-- rename
+-- :%/old_name/new_name/g -- global
+
 -- Resize with arrows
 -- vim.keymap.set( 'n', '<Up>', ':resize -2<CR>', opts )
 -- vim.keymap.set( 'n', '<Down>', ':resize +2<CR>', opts)
@@ -72,10 +75,6 @@ vim.keymap.set('n', '<Right>', ':echo "use l!"<CR>', opts)
 -- Disable / Enable Tabnine
 -- vim.keymap.set('n', '<leader>mm', ':TabnineDisable<CR>', { desc = 'Tabnine: disable' })
 -- vim.keymap.set('n', '<leader>m', ':TabnineEnable<CR>', { desc = 'Tabnine: enable' })
-
--- Dis-/ able copilot
-vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot: disable' })
--- vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot: enable' })
 
 -- Buffers
 opts = { noremap = true, silent = true }
