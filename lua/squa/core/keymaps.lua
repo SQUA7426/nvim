@@ -73,8 +73,8 @@ vim.keymap.set('n', '<Left>', ':echo "use h!"<CR>', opts)
 vim.keymap.set('n', '<Right>', ':echo "use l!"<CR>', opts)
 
 -- Disable / Enable Tabnine
--- vim.keymap.set('n', '<leader>mm', ':TabnineDisable<CR>', { desc = 'Tabnine: disable' })
--- vim.keymap.set('n', '<leader>m', ':TabnineEnable<CR>', { desc = 'Tabnine: enable' })
+vim.keymap.set('n', '<leader>mm', ':TabnineDisable<CR>', { desc = 'Tabnine: disable' })
+vim.keymap.set('n', '<leader>m', ':TabnineEnable<CR>', { desc = 'Tabnine: enable' })
 
 -- Buffers
 opts = { noremap = true, silent = true }

@@ -49,6 +49,7 @@ require('lazy').setup({
     require 'squa.plugins.cord',
     require 'squa.plugins.flash',
     require 'squa.plugins.fterm',
+    require 'squa.plugins.lazydev',
     require 'squa.plugins.lualine',
     require 'squa.plugins.neotree',
     require 'squa.plugins.noicenvim',

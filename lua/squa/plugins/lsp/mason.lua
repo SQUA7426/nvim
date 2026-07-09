@@ -22,7 +22,7 @@ return
         mason_lspconfig.setup({
             -- List of servers for mason to install
             ensure_installed = {
-                "sqls",
+                -- "sqls",
                 "sqlls",
                 "rust_analyzer",
                 -- "asm_lsp",
@@ -43,8 +43,8 @@ return
                 -- "java_language_server",
                 -- "pkgbuild_language_server",
                 "bashls",
-                "cmake",
-                "arduino_language_server",
+                -- "cmake",
+                -- "arduino_language_server",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
