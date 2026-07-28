@@ -20,7 +20,6 @@ return
         })
 
         mason_lspconfig.setup({
-            -- List of servers for mason to install
             ensure_installed = {
                 -- "sqls",
                 "sqlls",
@@ -29,12 +28,12 @@ return
                 "clangd",
                 "html",
                 "cssls",
-                "tailwindcss",
-                "svelte",
+                -- "tailwindcss",
+                -- "svelte",
                 "lua_ls",
                 "graphql",
                 "emmet_ls",
-                "prismals",
+                -- "prismals",
                 "pyright",
                 "jdtls",
                 "matlab_ls",
@@ -46,8 +45,7 @@ return
                 -- "cmake",
                 -- "arduino_language_server",
             },
-            -- auto-install configured servers (with lspconfig)
-            automatic_installation = true, -- not the same as ensure_installed
+            automatic_installation = true,
         })
     end,
 }

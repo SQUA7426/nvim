@@ -20,11 +20,10 @@ augroup exe_code
     autocmd FileType lua nnoremap <C-P>
                 \ :term lua % <CR>
 
-    "autocmd FileType rust nnoremap <C-P>
-    "            \ :term rustc % && ./%< <CR> a
 
     autocmd FileType tex nnoremap <C-P>
                 \ :term cd %:p:h && pdflatex % && evince %<.pdf <CR>
+
     " compile and using arguments before executing in terminal
     autocmd FileType python nnoremap <C-B>
                 \ :term cd %:p:h && python3 % 
@@ -40,7 +39,4 @@ augroup exe_code
 
     autocmd FileType java nnoremap <C-B>
                 \ :term cd %:p:h && javac % && java %< 
-    
-    autocmd FileType rust nnoremap <C-B>
-                \ :term cd %:p:h && rustc % && ./%< 
 augroup END

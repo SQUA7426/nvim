@@ -6,23 +6,20 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
-    -- 1. WICHTIG: Holt die Capabilities von nvim-cmp ab, damit Autocomplete funktioniert
     local capabilities = require("cmp_nvim_lsp").default_capabilities(
       vim.lsp.protocol.make_client_capabilities()
     )
 
-    -- Diagnostic-Icons
     local signs = { Error = "⚔ ", Warn = "⚠ ", Hint = "⨁ ", Info = "ℹ " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- 2. Alle Standard-Server in einer Schleife mit dem neuen API registrieren
     local servers = {
       "html", "matlab_ls", "cssls", "sqls", "sqlls", "tailwindcss",
-      "jsonls", "bashls", "arduino_language_server", "pyright",
-      "graphql", "rust_analyzer", "cmake", "jdtls", "texlab"
+      "jsonls", "bashls", "pyright",
+      "rust_analyzer", "cmake", "jdtls", "texlab"
     }
 
     for _, server in ipairs(servers) do
@@ -30,12 +27,10 @@ return {
       vim.lsp.enable(server)
     end
 
-    -- 3. Server mit Spezialkonfigurationen (Natives API)
-
     -- Emmet
     vim.lsp.config("emmet_ls", {
       capabilities = capabilities,
-      filetypes = { "html", "css", "sass", "scss", "less", "svelte" },
+      filetypes = { "html", "css", "sass", "scss", "less" },
     })
     vim.lsp.enable("emmet_ls")
 
@@ -72,7 +67,6 @@ return {
             version = 'LuaJIT'
           },
           workspace = {
-            -- Hier aktivieren wir das ThirdParty-Handling, das vorher in lazydev.lua stand
             checkThirdParty = "Apply",
           }
         })
