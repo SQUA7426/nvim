@@ -14,7 +14,9 @@ sudo pacman -S --needed \
     lua51 \
     npm \
     fd \
-    luarocks
+    luarocks \
+    fzf \
+    ripgrep
 
 luarocks install magick
 ```
@@ -32,7 +34,9 @@ sudo apt install \
     lua5.1 \
     npm \
     fd-find \
-    luarocks
+    luarocks \
+    fzf \
+    ripgrep
 
 luarocks install --local magick
 ```
