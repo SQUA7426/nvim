@@ -1,4 +1,6 @@
-This is SQUA's nvim configuration.
+# This is SQUA's nvim configuration.
+
+## Arch Linux:
 ```
 sudo pacman -S --needed \
     python3 \
@@ -15,4 +17,22 @@ sudo pacman -S --needed \
     luarocks
 
 luarocks install magick
+```
+
+## Debian:
+```
+sudo apt install \
+    python3 \
+    cmake \
+    libgtk3.0-0t64 \
+    libglib2.0-0t64 \
+    libwebkit2gtk-4.1-0 \
+    libsoup-3.0-0 \
+    imagemagick \
+    lua5.1 \
+    npm \
+    fd-find \
+    luarocks
+
+luarocks install --local magick
 ```
