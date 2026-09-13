@@ -1,42 +1,9 @@
 # This is SQUA's nvim configuration.
 
-## Installing latest Nvim (x86_64) release AppImage:
-```
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-```
-In ~/.bashrc or ~/.zshrc add following:
-```
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-```
-then applying changes through terminal:
-```
-source ~/.bashrc
-```
-or
-```
-source ~/.zshrc
-```
-### Arch Linux:
-```
-sudo pacman -S --needed \
-    python3 \
-    cmake \
-    go \
-    gtk3 \
-    glib2 \
-    webkit2gtk-4.1 \
-    libsoup3 \
-    imagemagick \
-    lua51 \
-    npm \
-    fd \
-    luarocks \
-    fzf \
-    ripgrep
+## Installing
 
-luarocks install magick
+```
+./install.sh -d <distribution> -sh <shell>
 ```
 
 ### Debian:
