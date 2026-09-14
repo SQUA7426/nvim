@@ -9,6 +9,7 @@ sudo pacman -S nvim
 Debian
 ```
 sudo apt install nvim
+```
 
 ### Installation Script
 ```
