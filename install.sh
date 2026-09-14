@@ -71,18 +71,12 @@ src="$HOME/.${sh}rc"
 if [[ ${distribution} == "debian" ]]; then
   echo -e "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage ... "
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
-  echo -e "Making Appimage executable and creating DIR in /opt/nvim ..."
+  echo -e "Making Appimage executable and creating DIR in /bin/nvim ..."
   chmod u+x nvim-linux-x86_64.appimage
-  mkdir -p /opt/nvim
-  mv nvim-linux-x86_64.appimage /opt/nvim/nvim
-
-  echo "exporting PATH: /opt/nvim to env..."
-  echo 'export PATH="$PATH:/opt/nvim"' >> "$src"
-
-  echo "source..."
-  source "$src"
-  echo "sourced!"
-
+  mkdir -p /bin/nvim
+  echo "moving nvim-linux-x86_64.appimgage to /bin/nvim ..."
+  mv nvim-linux-x86_64.appimage /bin/nvim/nvim
+  
   echo "Installing needed Dependencies..."
   apt install \
       python3 \
