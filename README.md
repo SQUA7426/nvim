@@ -21,11 +21,11 @@ In terminal:
 ```
 nvim
 ```
-there:
+there type in
 `
-:q Mason
+: Mason
 `
-And let there Install the required lsp.
+and let it Install the required lsp from Mason.
 
 
 ## Dependencies
