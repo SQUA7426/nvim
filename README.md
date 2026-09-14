@@ -10,6 +10,13 @@ Debian
 ```
 sudo apt install neovim
 ```
+### Cloning Repo
+```
+git clone https://github.com/squa7426/nvim.git ~/.config/nvim
+``` \
+```
+sudo chmod u+x ~/.config/nvim/install.sh
+```
 
 ### Installation Script
 ```
