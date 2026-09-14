@@ -1,9 +1,52 @@
 # This is SQUA's nvim configuration.
 
 ## Installing
+### PreInstall
+Arch:
+```
+sudo pacman -S nvim
+```
+Debian
+```
+sudo apt install nvim
 
+### Installation Script
 ```
 ./install.sh -d <distribution> -sh <shell>
+```
+
+### PostInstallation
+In terminal:
+```
+nvim
+```
+there:
+`
+:q Mason
+`
+And let there Install the required lsp.
+
+
+## Dependencies
+### Arch:
+```
+sudo pacman -S --needed \
+    python3 \
+    cmake \
+    go \
+    gtk3 \
+    glib2 \
+    webkit2gtk-4.1 \
+    libsoup3 \
+    imagemagick \
+    lua51 \
+    npm \
+    fd \
+    luarocks \
+    fzf \
+    ripgrep
+
+luarocks install magick
 ```
 
 ### Debian:
