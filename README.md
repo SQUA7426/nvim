@@ -8,7 +8,7 @@ sudo pacman -S nvim
 ```
 Debian
 ```
-sudo apt install nvim
+sudo apt install neovim
 ```
 
 ### Installation Script
@@ -23,9 +23,13 @@ nvim
 ```
 there type in
 `
+: Lazy update
+`
+and
+`
 : Mason
 `
-and let it Install the required lsp from Mason.
+Let it Install the required lsp from Mason.
 
 
 ## Dependencies
