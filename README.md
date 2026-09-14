@@ -23,12 +23,12 @@ nvim
 ```
 there type in
 `
-: Lazy update
+:Lazy update
 `
 and
 `
-: Mason
-`
+:Mason
+`\
 Let it Install the required lsp from Mason.
 
 
