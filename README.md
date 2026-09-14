@@ -39,8 +39,9 @@ and
 Let it Install the required lsp from Mason.
 
 
-## Dependencies
-### Arch:
+### Dependencies
+Debian Ones already included in the installation script.
+#### Arch:
 ```
 sudo pacman -S --needed \
     python3 \
@@ -61,7 +62,7 @@ sudo pacman -S --needed \
 luarocks install magick
 ```
 
-### Debian:
+#### Debian:
 ```
 sudo apt install \
     python3 \
@@ -76,7 +77,8 @@ sudo apt install \
     fd-find \
     luarocks \
     fzf \
-    ripgrep
+    ripgrep \
+    gettext
 
 luarocks install --local magick
 ```
