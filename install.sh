@@ -84,7 +84,7 @@ if [[ ${distribution} == "debian" ]]; then
   echo "sourced!"
 
   echo "Installing needed Dependencies..."
-  sudo apt install \
+  apt install \
       python3 \
       cmake \
       libgtk-3-0t64 \
