@@ -75,7 +75,7 @@ if [[ ${distribution} == "debian" ]]; then
   chmod u+x nvim-linux-x86_64.appimage
   mkdir -p /bin/nvim
   echo "moving nvim-linux-x86_64.appimgage to /bin/nvim ..."
-  mv nvim-linux-x86_64.appimage /bin/nvim/nvim
+  mv nvim-linux-x86_64.appimage /usr/bin/nvim
   
   echo "Installing needed Dependencies..."
   apt install \
