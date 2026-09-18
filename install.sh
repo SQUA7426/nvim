@@ -73,7 +73,7 @@ if [[ ${distribution} == "debian" ]]; then
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
   echo -e "Making Appimage executable and creating DIR in /bin/nvim ..."
   chmod u+x nvim-linux-x86_64.appimage
-  mkdir -p /bin/nvim
+  mkdir -p /usr/bin/nvim
   echo "moving nvim-linux-x86_64.appimgage to /bin/nvim ..."
   mv nvim-linux-x86_64.appimage /usr/bin/nvim
   
