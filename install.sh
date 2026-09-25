@@ -11,13 +11,14 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 # HELP
-if [[ "$#" -lt 2 || "$#" -eq 3 || "$#" -ge 5 || ${1} == "help" ]]; then
+if [[ "$#" -lt 2 || "$#" -eq 3 || "$#" -gt 5 || ${1} == "help" ]]; then
   echo -e "${helping}"
   exit
 fi
 
 distribution=""
 sh=""
+proc=""
 
 # Installing 
 if [[ "$#" -eq 2 || "$#" -eq 4 ]]; then
@@ -64,11 +65,20 @@ if [[ "$#" -eq 4 ]]; then
   esac
 fi
 
-echo -e "$distribution"
-echo -e "$sh"
+if [[ "$5" == "arm64" ]]; then
+  proc="$5"
+else
+  proc="x86-64"
+fi
+
+# echo -e "$distribution"
+# echo -e "$sh"
 src="$HOME/.${sh}rc"
 
+
 if [[ ${distribution} == "debian" ]]; then
+  
+  if [[ ${proc} == "x86-64" ]]; then
   echo -e "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage ... "
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
   echo -e "Making Appimage executable and creating DIR in /bin/nvim ..."
@@ -92,7 +102,30 @@ if [[ ${distribution} == "debian" ]]; then
       luarocks \
       fzf \
       ripgrep
-
+  else
+  echo -e "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage ... "
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
+  echo -e "Making Appimage executable and creating DIR in /bin/nvim ..."
+  chmod u+x nvim-linux-arm64.appimage
+  mkdir -p /usr/bin/
+  echo "moving nvim-linux-arm64.appimgage to /bin/nvim ..."
+  mv nvim-linux-arm64.appimage /usr/bin/nvim
+  
+  sudo apt install \
+    python3 \
+    cmake \
+    libgtk-3-0t64 \
+    libglib2.0-0t64 \
+    libwebkit2gtk-4.1-0 \
+    libsoup-3.0-0 \
+    imagemagick \
+    lua5.1 \
+    npm \
+    fd-find \
+    luarocks \
+    fzf \
+    ripgrep
+  fi
   echo "Installing luarocks: magick.."
   luarocks install magick
   echo "Installed magick!"
@@ -100,5 +133,6 @@ if [[ ${distribution} == "debian" ]]; then
 
   exit
 elif [[ ${distribution} == "arch" ]]; then
+  sudo pacman -Sy nvim
   exit
 fi
