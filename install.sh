@@ -106,10 +106,10 @@ if [[ ${distribution} == "debian" ]]; then
   echo -e "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage ... "
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.appimage
   echo -e "Making Appimage executable and creating DIR in /bin/nvim ..."
-  chmod u+x nvim-linux-arm64.appimage
-  mkdir -p /usr/bin/
+  sudo chmod u+x nvim-linux-arm64.appimage
+  sudo mkdir -p /usr/bin/
   echo "moving nvim-linux-arm64.appimgage to /bin/nvim ..."
-  mv nvim-linux-arm64.appimage /usr/bin/nvim
+  sudo mv nvim-linux-arm64.appimage /usr/bin/nvim
   
   sudo apt install \
     python3 \
