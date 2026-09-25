@@ -11,7 +11,7 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 # HELP
-if [[ "$#" -lt 2 || "$#" -eq 3 || "$#" -gt 5 || ${1} == "help" ]]; then
+if [[ "$#" -lt 2 || "$#" -eq 3 || "$#" -ge 6 || ${1} == "help" ]]; then
   echo -e "${helping}"
   exit
 fi
