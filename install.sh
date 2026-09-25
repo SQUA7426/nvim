@@ -21,7 +21,7 @@ sh=""
 proc=""
 
 # Installing 
-if [[ "$#" -eq 2 || "$#" -eq 4 ]]; then
+if [[ "$#" -eq 2 || "$#" -eq 4 || "$#" -eq 5 ]]; then
   case $1 in
     "-d")
       if [[ "$2" == "debian" || "$2" == "arch" ]]; then
@@ -44,7 +44,7 @@ if [[ "$#" -eq 2 || "$#" -eq 4 ]]; then
   esac
 fi
 
-if [[ "$#" -eq 4 ]]; then
+if [[ "$#" -eq 4|| "$#" -eq 5 ]]; then
   case $3 in
     "-d")
       if [[ "$4" == "debian" || "$4" == "arch" ]]; then
