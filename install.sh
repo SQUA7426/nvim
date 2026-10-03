@@ -11,7 +11,7 @@ if [[ "$#" -eq 0 ]]; then
 fi
 
 # HELP
-if [[ "$#" -lt 2 || "$#" -eq 3 || "$#" -ge 6 || ${1} == "help" ]]; then
+if [[ "$#" -le 5 || "$#" -gt 6 || ${1} == "help" ]]; then
   echo -e "${helping}"
   exit
 fi
@@ -21,60 +21,44 @@ sh=""
 proc=""
 
 # Installing 
-if [[ "$#" -eq 2 || "$#" -eq 4 || "$#" -eq 5 ]]; then
-  case $1 in
-    "-d")
-      if [[ "$2" == "debian" || "$2" == "arch" ]]; then
-        distribution="$2"
-        sh="shell"
-      else
-        echo -e "Error: either arch or debian!\n"
-        exit
-      fi
-    ;;
-  "-sh")
-    if [[ "$2" == "bash" || "$2" == "zsh" ]]; then
-      sh="$2"
-      distribution="arch"
-    else
-      echo -e "Error: either bash or shell"
-      exit
-    fi
-    ;;
-  esac
-fi
-
-if [[ "$#" -eq 4|| "$#" -eq 5 ]]; then
-  case $3 in
-    "-d")
-      if [[ "$4" == "debian" || "$4" == "arch" ]]; then
-        distribution="$4"
-      else
-        echo -e "Error: either arch or debian!\n"
-        exit
-      fi
-    ;;
-  "-sh")
-    if [[ "$4" == "bash" || "$4" == "zsh" ]]; then
-      sh="$4"
-    else
-      echo -e "Error: either bash or shell"
-      exit
-    fi
-    ;;
-  esac
-fi
-
-if [[ "$5" == "arm64" ]]; then
-  proc="$5"
+if [[ "$#" -eq 6 ]]; then
+  for $i in {1..3}; do
+      arg1=$((i*2-1))
+      arg2=$((i*2))
+      case "${!arg1}"  in
+        "-d")
+          if [[ "${!arg2}" == "debian" || "${!arg2}" == "arch" ]]; then
+            distribution="${!arg2}"
+          else
+            echo -e "Error: either arch or debian!\n"
+            exit
+          fi
+        ;;
+      "-sh")
+        if [[ "${!arg2}" == "bash" || "${!arg2}" == "zsh" ]]; then
+          sh="${!arg}"
+        else
+          echo -e "Error: either bash or shell"
+          exit
+        fi
+        ;;
+      "-pr")
+        if  [[ "${!arg2}" == "arm64" || "${!arg2}" == "x86-64" ]]; then
+          proc="${!arg2}"
+        else
+          echo -e "Error either arm64 or x86-64"
+          exit
+        fi
+        ;;
+      esac
+  done
 else
-  proc="x86-64"
+  echo -e "Please use 6 Args!"
+  exit
 fi
 
-# echo -e "$distribution"
-# echo -e "$sh"
-src="$HOME/.${sh}rc"
 
+src="$HOME/.${sh}rc"
 
 if [[ ${distribution} == "debian" ]]; then
   
